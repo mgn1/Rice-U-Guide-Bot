@@ -328,7 +328,7 @@ function receivedMessage(event) {
             ]
           }
         }
-        sendTextMessage(senderID, messageData);
+        callSendAPI(senderID, messageData);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "attachment received");
@@ -385,6 +385,42 @@ function receivedPostback(event) {
   // let them know it was successful
   sendTextMessage(senderID, "Postback called");
 }
+
+
+/*
+ * Send a message with Quick Reply buttons.
+ *
+ */
+function sendMenu(recipientId) {
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: "What's your favorite movie genre?",
+            quick_replies: [
+                {
+                    "content_type":"text",
+                    "title":"Action",
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Comedy",
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Drama",
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+                }
+            ]
+        }
+    };
+
+    callSendAPI(messageData);
+}
+
 
 /*
  * Message Read Event
@@ -583,7 +619,7 @@ function sendButtonMessage(recipientId) {
         }
       }
     }
-  };  
+  };
 
   callSendAPI(messageData);
 }
