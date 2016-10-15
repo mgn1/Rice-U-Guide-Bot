@@ -308,27 +308,7 @@ function receivedMessage(event) {
         break;
 
       default:
-        var messageData = {
-          recipient: {
-            id: recipientId
-          },
-          message: {
-            text:"Pick a color:",
-            quick_replies:[
-              {
-                content_type:"text",
-                title:"Locations",
-                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
-              },
-              {
-                content_type:"text",
-                title:"Fun fact",
-                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-              }
-            ]
-          }
-        }
-        callSendAPI(senderID, messageData);
+        sendMenu(senderID)
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "attachment received");
@@ -397,7 +377,7 @@ function sendMenu(recipientId) {
             id: recipientId
         },
         message: {
-            text: "What's your favorite movie genre?",
+            text: "example menu",
             quick_replies: [
                 {
                     "content_type":"text",
