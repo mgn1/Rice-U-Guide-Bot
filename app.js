@@ -265,15 +265,25 @@ function receivedMessage(event) {
 
   if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    // updateUserState(senderID, quickReplyPayload);
-    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. state is: " );//+ userList[senderID].state);
+    updateUserState(senderID, quickReplyPayload);
+    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. states are: " + userList.toString());
 
     return;
   }
 
   if (messageText) {
-    // sendMenu(recipientID);
-      sendDirections(senderID, messageText);
+      var userState;
+      for (var i=0; i<userList.length; i++) {
+          if (userList[i].id === id) {
+              userState = userList[i].state;
+              return;
+          }
+      }
+      if (userState.toLowerCase() === directions) {
+          sendDirections(recipientID, messageText);
+      } else {
+          sendMenu(senderID);
+      }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
   }
