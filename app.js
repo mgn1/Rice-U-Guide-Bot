@@ -271,7 +271,7 @@ function receivedMessage(event) {
   }
 
   if (messageText) {
-    sendMenu(recipientID)
+    sendMenu(recipientID);
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
   }
