@@ -248,8 +248,6 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-    sendTextMessage(recipientID, "Madie's commit is working");
-
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
@@ -264,11 +262,11 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
+
   if (quickReply) {
     var quickReplyPayload = quickReply.payload;
     updateUserState(senderID, quickReplyPayload);
     sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. state is: " + userList[senderID].state);
-
     return;
   }
 
