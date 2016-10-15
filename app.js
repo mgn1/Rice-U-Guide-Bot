@@ -248,8 +248,6 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-    sendTextMessage(recipientID, "Madie's commit is working");
-
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
@@ -266,15 +264,15 @@ function receivedMessage(event) {
 
   if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    updateUserState(senderID, quickReplyPayload);
-    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. state is: " + userList[senderID].state);
+    // updateUserState(senderID, quickReplyPayload);
+    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. state is: " );//+ userList[senderID].state);
 
     return;
   }
 
   if (messageText) {
-    sendDirections(senderID, messageText);
     // sendMenu(recipientID);
+      sendDirections(senderID, messageText);
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
   }
@@ -393,6 +391,7 @@ function sendDirections(recipientId, messageData) {
         }
     })
 
+    console.log("Finished the matching");
     // Return the highest result, and an error otherwise.
     sendTextMessage(recipientId, matches.empty() ? "Location not found." : matches[matches.length-1]);
 }
