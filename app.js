@@ -236,7 +236,7 @@ function receivedMessage(event) {
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
 
-    sendTextMessage(senderID, "Quick reply tapped");
+    sendTextMessage(senderID, quickReplyPayload + " selected.");
     return;
   }
 
@@ -372,18 +372,18 @@ function sendMenu(recipientId) {
             quick_replies: [
                 {
                     "content_type":"text",
-                    "title":"Action",
-                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+                    "title":"door number 1",
+                    "payload":"ONE"
                 },
                 {
                     "content_type":"text",
-                    "title":"Comedy",
-                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+                    "title":"door number 2",
+                    "payload":"TWO"
                 },
                 {
                     "content_type":"text",
-                    "title":"Drama",
-                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+                    "title":"door number 3",
+                    "payload":"THREE"
                 }
             ]
         }
