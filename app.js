@@ -273,7 +273,8 @@ function receivedMessage(event) {
   }
 
   if (messageText) {
-    sendMenu(recipientID);
+    sendDirections(senderID, messageText);
+    // sendMenu(recipientID);
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
   }
@@ -378,6 +379,23 @@ function sendGifMessage(recipientId) {
   callSendAPI(messageData);
 }
 
+function sendDirections(recipientId, messageData) {
+    var locs = [
+        ["Brown College", "brown\scollege"],
+        ["Brown College Masters House", "brown(\scollege)*(\smaster)+.*(house)*"]
+    ]
+
+    // Search for regexes
+    var matches = [];
+    locs.forEach(function (location) {
+        if (messageData.test(location[1]) == true) {
+            matches.push(location[0]);
+        }
+    })
+
+    // Return the highest result, and an error otherwise.
+    sendTextMessage(recipientId, matches.empty() ? "Location not found." : matches[matches.length-1]);
+}
 
 /*
  * Send a text message using the Send API.
