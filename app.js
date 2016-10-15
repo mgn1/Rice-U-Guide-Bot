@@ -220,7 +220,7 @@ function receivedDeliveryConfirmation(event) {
  * var userList = '{ "users": [{"id":"john", "state":"Directions"}, {"id":"jane", "state":"Directions"}]}';
  */
 function updateUserState(id, newState) {
-    for (var i=0; i<users.length; i++) {
+    for (var i=0; i<userList.length; i++) {
         if (userList[i].id === id) {
             userList[i].state = newState;
             return;
