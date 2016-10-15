@@ -387,7 +387,7 @@ function sendDirections(recipientId, messageData) {
     // Search for regexes
     var matches = [];
     locs.forEach(function (location) {
-        if (messageData.test(location[1]) == true) {
+        if ((location[1]).test(messageData) == true) {
             matches.push(location[0]);
         }
     })
