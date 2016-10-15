@@ -308,7 +308,7 @@ function receivedMessage(event) {
         break;
 
       default:
-        sendTextMessage(senderID, "why you texting me?");
+        sendTextMessage(senderID, "why you texting me? testing");
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "attachment received");
