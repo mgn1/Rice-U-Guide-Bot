@@ -380,14 +380,15 @@ function sendGifMessage(recipientId) {
 
 function sendDirections(recipientId, messageData) {
     var locs = [
-        ["Brown College", "brown\scollege"],
-        ["Brown College Masters House", "brown(\scollege)*(\smaster)+.*(house)*"]
+        ["Brown College", "brown\\scollege"],
+        ["Brown College Masters House", "brown(\\scollege)*(\\smaster)+.*(house)*"]
     ]
 
     // Search for regexes
     var matches = [];
     locs.forEach(function (location) {
-        if ((location[1]).test(messageData) == true) {
+        var reg = new RegExp(location[1]);
+        if (reg.test(messageData) == true) {
             matches.push(location[0]);
         }
     })
