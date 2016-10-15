@@ -262,6 +262,7 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
+
   if (quickReply) {
     var quickReplyPayload = quickReply.payload;
     // updateUserState(senderID, quickReplyPayload);
