@@ -308,7 +308,27 @@ function receivedMessage(event) {
         break;
 
       default:
-        sendTextMessage(senderID, "why you texting me? testing");
+        var messageData = {
+          recipient: {
+            id: recipientId
+          },
+          message: {
+            text:"Pick a color:",
+            quick_replies:[
+              {
+                content_type:"text",
+                title:"Locations",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+              },
+              {
+                content_type:"text",
+                title:"Fun fact",
+                payload:"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+              }
+            ]
+          }
+        }
+        sendTextMessage(senderID, messageData);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "attachment received");
@@ -543,9 +563,9 @@ function sendButtonMessage(recipientId) {
     },
     message: {
       attachment: {
-        type: "template",
+        type: "button",
         payload: {
-          template_type: "button",
+          content_type: "text",
           text: "This is test text",
           buttons:[{
             type: "web_url",
