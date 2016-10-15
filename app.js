@@ -395,7 +395,7 @@ function sendDirections(recipientId, messageData) {
 
     console.log("Finished the matching");
     // Return the highest result, and an error otherwise.
-    sendTextMessage(recipientId, matches.empty() ? "Location not found." : matches[matches.length-1]);
+    sendTextMessage(recipientId, matches.length == 0 ? "Location not found." : matches[matches.length-1]);
 }
 
 /*
