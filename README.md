@@ -1,6 +1,5 @@
-# Messenger Platform Sample
+# Owl's Eye View
 
-This is a sample project showcasing the Messenger Platform. You can go through the [walk-through](https://developers.facebook.com/docs/messenger-platform/quickstart) to understand this code in more detail. The [Complete Guide](https://developers.facebook.com/docs/messenger-platform/implementation) goes deeper into the features available.
+This is a project using the [Facebook Messenger Platform](https://developers.facebook.com/docs/messenger-platform/) to make an interactive Rice Guide. 
 
-Visit the [dev site](https://developers.facebook.com/docs/messenger-platform/) to find out more details about the Messenger Platform.
-
+Made by [Madie Nikirk](mailto:mgn1@rice.edu) and [Charlie Paul](mailto:Charles.Paul@rice.edu) for HackRice 6!
