@@ -1,6 +1,6 @@
 {
-    "appSecret": "",
-    "pageAccessToken": "",
-    "validationToken": "",
-    "serverURL": ""
+    "appSecret": "b798678d0b971f0535d376ee2c743482",
+    "pageAccessToken": "EAADJudeyFfABAOabedRqEyr9870E1xZBth3exZAEegtZBs6InO3kn2XlB00G4jKJcF6Fb7oqIkDDjwr5DOafrXw4Kz0mWPc8D97jEJMkhsSJZCZAAC2JdE89GBq8l5jgbc6kZCbbL9hxHjOrsuCPLdauHSQN6zoPCJl74P3yTxoQZDZD",
+    "validationToken": "valToken",
+    "serverURL": "https://riceuguidebot.herokuapp.com"
 }
