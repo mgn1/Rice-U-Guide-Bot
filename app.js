@@ -271,10 +271,13 @@ function receivedMessage(event) {
   var quickReply = message.quick_reply;
 
   if (quickReply) {
-    var quickReplyPayload = quickReply.payload;
-    setUserState(senderID, quickReplyPayload);
-    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID + " state: " + getUserState(senderID));
-
+      var quickReplyPayload = quickReply.payload;
+      if (quickReply.clarifyState) {
+        // TODO
+      } else {
+          setUserState(senderID, quickReplyPayload);
+          sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID + " state: " + getUserState(senderID));
+      }
     return;
   }
 
@@ -316,17 +319,20 @@ function sendMenu(recipientId) {
                 {
                     "content_type":"text",
                     "title":"Directions",
-                    "payload":"directions"
+                    "payload":"directions",
+                    clarifyState:false
                 },
                 {
                     "content_type":"text",
                     "title":"Explore",
-                    "payload":"explore"
+                    "payload":"explore",
+                    clarifyState:false
                 },
                 {
                     "content_type":"text",
                     "title":"Fun Facts",
-                    "payload":"fun facts"
+                    "payload":"fun facts",
+                    clarifyState:false
                 }
             ]
         }
@@ -475,11 +481,12 @@ function sendConflictMenu(recipientId, conflictLists) {
         message: {
             text: "Did you mean:",
             
-            quick_replies: conflictLists.map(function (_, option) {
+            quick_replies: conflictLists.map(function (option) {
                 return {
                     "content_type":"text",
                     "title":option,
-                    "payload":"DirectionConflict"
+                    "payload":option,
+                    clarifyState:true
                 }
             })
 
