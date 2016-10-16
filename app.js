@@ -301,7 +301,21 @@ function receivedMessage(event) {
       // Otherwise, this is our state-changing code from the main menu.
        else {
           setUserState(senderID, quickReplyPayload);
-          sendTextMessage(senderID, "You are in " + quickReplyPayload + ". Exit using the keyword \"exit\".");
+
+          switch (quickReplyPayload) {
+              case "directions":
+                  sendTextMessage(senderID, "You are in Directions. Enter a location to go, or exit using the keyword \"exit\".");
+                  break;
+              case "fun facts":
+                  setUserState(senderID, "menu")
+                  sendFunFact(senderID);
+                  break;
+              case "explore":
+                  sendTextMessage(senderID, "You are in " + quickReplyPayload + ". Exploring stuff will go here. Exit using the keyword \"exit\".");
+                  break;
+              default:
+                  sendTextMessage(senderID, "wut did you do. state is " + state);
+          }
       }
     return;
   }
