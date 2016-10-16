@@ -284,7 +284,7 @@ function receivedMessage(event) {
   */
 
   // You may get a text or attachment but not both
-  var messageText = message.text;
+  var messageText = message.text.toLowerCase();
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
@@ -306,6 +306,10 @@ function receivedMessage(event) {
   }
 
   else if (messageText) {
+      if (messageText === "menu" || messageText === "go back" || messageText === "back") {
+          setUserState(senderID, "menu");
+          sendMenu(senderID);
+      }
       var state = getUser(senderID).stateName;
       switch(state) {
           case "menu":
@@ -321,7 +325,7 @@ function receivedMessage(event) {
               sendTextMessage(senderID, "you are in explore");
               break;
           default:
-              sendTextMessage(senderID, "wut did you do. state is "+ state);
+              sendTextMessage(senderID, "wut did you do. state is " + state);
       }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
