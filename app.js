@@ -491,13 +491,13 @@ function sendDirections(recipientId, messageData) {
 ["M.D. Anderson Hall", "(m d anderson hall)|(anh)|((m\\.*d\\.*\\s)*anderson\\shall)", "https://goo.gl/maps/KYpf6JNxeSr"],
 ["Abercromie Engineering Lab", "(abercromie engineering lab)|(ael)|(abercrombie\\s(engineering\\slaboratory)*)", "https://goo.gl/maps/wPBxz7HHnxF2"],
 ["Allen Center", "(allen center)|(aln)|(allen\\s(business\\s)*center)", "https://goo.gl/maps/SGGCSQvB8eJ2"],
+["Margaret Root Brown College", "(margaret root brown college)|(bnc)|(brown(\\scollege)*)", "https://goo.gl/maps/wvXbrkh3vgp"],
 ["conflict:Brown Hall", "brown\\shall"],
 ["Alice Pratt Brown Hall", "(alice pratt brown hall)|(apb)|((((alice\\s)*(pratt\\s)+)|((alice\\s)+(pratt\\s)*))brown\\shall)", "https://goo.gl/maps/toGFGJqMhin"],
 ["George R. Brown Hall", "(george r brown hall)|(grb)|((((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall)", "https://goo.gl/maps/oMB2ztggJmk"],
 ["Herman Brown Hall for Math Sci", "(herman brown hall for math sci)|(hbh)|(herman\\sbrown\\shall)", "https://goo.gl/maps/xc1Edcf4rsy"],
 ["Baker College", "(baker college)|(bkc)|(baker(\\scollege)*)", "https://goo.gl/maps/W5NJNnAFW2q"],
 ["James Baker Hall", "(james baker hall)|(bkh)|((james\\s(a\\.*\\s)*)*baker\\shall)", "https://goo.gl/maps/s5c2Ww5cTsS2"],
-["Margaret Root Brown College", "(margaret root brown college)|(bnc)|(brown(\\scollege)*)", "https://goo.gl/maps/wvXbrkh3vgp"],
 ["conflict: Pavilion", "pavilion"],
 ["Booth Centennial Pavilion", "(booth\\s)*centennial\\spavilion", "https://goo.gl/maps/9wZWZCeSAsJ2"],
 ["Brochstein Pavilion", "(brochstein pavilion)|(bpv)|(brochstein(\\spavilion)*)", "https://goo.gl/maps/9wZWZCeSAsJ2"],
@@ -658,7 +658,7 @@ Helper function that takes in a list of possible conflict locations and sends th
  */
 function sendConflictMenu(recipientId, conflictLists) {
 
-    console.log("Checking conflicts for " + conflictLists.toString());
+    console.log("Checking conflicts, starting with" + conflictLists[0].toString());
 
     var messageData = {
         recipient: {
