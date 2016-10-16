@@ -726,7 +726,9 @@ function sendBusiness(recipientId, messageData) {
         }
     });
     var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
-    sendTextMessage(recipientId, lastLoc[0] + " Their business hours are " + lastLoc[2] + ".  You can find them here: " + lastLoc[1]);
+    sendTextMessage(recipientId, lastLoc[0]);
+    sendTextMessage(recipientId, "Their business hours are " + lastLoc[3] + ".");
+    sendTextMessage(recipientId, "You can find them here: " + lastLoc[2]);
 }
 
 
