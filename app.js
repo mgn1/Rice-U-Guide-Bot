@@ -478,10 +478,13 @@ function sendFunFact(recipientId) {
 }
 
 /*
- * Sends directions
+ * Gives directions to the user for a particular location on campus.
  */
 function sendDirections(recipientId, messageData) {
 
+    /*
+    Common names on Rice. Clarification is need from the user on which place they want.
+     */
     var conflict = {
         "Anderson" : [
             "M.D. Anderson Biological Laboratories",
@@ -504,6 +507,10 @@ function sendDirections(recipientId, messageData) {
         ]
     };
 
+    /*
+     Regex expressions for all the various places on campus.
+      See http://www.rice.edu/maps/Rice-University-Color-Campus-Map.pdf for a list of the major spots on campus.
+      */
     var locs = [
         ["Abercrombie Engineering Laboratory", "abercrombie\\s(engineering\\slaboratory)*"],
         ["Allen Business Center", "allen\\s(business\\s)*center"],
@@ -612,6 +619,12 @@ function sendDirections(recipientId, messageData) {
         }
     });
 
+    /*
+     Get the highest result, and an error otherwise. The regexes are in increasing complexity
+     i.e. the brown conflict regex is searched before brown hall. This means brown conflict will be pushed,
+     but so will brown hall, and since brown hall was pushed more recently, we know the user meant brown hall
+     and not some generic brown.
+     */
     var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
 
     console.log("Finished the matching: " + lastLoc);
@@ -623,11 +636,13 @@ function sendDirections(recipientId, messageData) {
         console.log("clarification is " + getUser(recipientId).clarify);
         sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)]);
     } else {
-        // Return the highest result, and an error otherwise.
         sendTextMessage(recipientId, lastLoc);
     }
 }
 
+/*
+Helper function that takes in a list of possible conflict locations and sends them to the user.
+ */
 function sendConflictMenu(recipientId, conflictLists) {
 
     console.log("Checking conflicts for " + conflictLists.toString());
@@ -642,6 +657,7 @@ function sendConflictMenu(recipientId, conflictLists) {
             quick_replies: conflictLists.map(function (option) {
                 return {
                     "content_type":"text",
+                    // Titles are limited to 20 characters.
                     "title":option.substr(0, 20),
                     "payload":option
                 };
