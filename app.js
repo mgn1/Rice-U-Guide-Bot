@@ -720,7 +720,7 @@ function sendExplore(recipientId) {
  * Businesses/Serveries
  */
 function sendBusiness(recipientId, messageData) {
-    var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.*coffee.*)|(.*cafe.*)", "hhttps://goo.gl/maps/EuipxLCTrdp", "Mon-Thurs: 7:30am - 1am, Fri: 7:30am - 5pm, Sat: 10am - 5pm, Sun: 2pm - 1am"],
+    var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.*coffee.*)|(.*cafe.*)", "https://goo.gl/maps/EuipxLCTrdp", "Mon-Thurs: 7:30am - 1am, Fri: 7:30am - 5pm, Sat: 10am - 5pm, Sun: 2pm - 1am"],
         ["The Hoot is Rice's late night food store", "(.*late.*)|(.*hoot.*)", "https://goo.gl/maps/EuipxLCTrdp", "Sunday — Wednesday 8:00 P.M. — 1:00 A.M, Thursday 8:00 P.M. — 1:30 A.M."],
         ["Rice Bookstore sells school supplies and Rice merchandise.", ".*book.*", "https://goo.gl/maps/EuipxLCTrdp", "Weekdays 8:00am - 6:00pm, Saturday 10:00am - 3:00pm, Sunday NOON - 4:00pm"],
         ["North Servery is one of Rice's serveries, serving Jones, Brown, and Martel colleges.", ".*north.*", "https://goo.gl/maps/5agW4LkomU22", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
