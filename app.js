@@ -472,6 +472,7 @@ function sendFunFact(recipientId) {
   "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which."];
 
   sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
+    sendMenu(recipientId);
 }
 
 /*
@@ -687,6 +688,7 @@ function sendExplore(recipientId) {
 
     callSendAPI(imageMessage);
     sendTextMessage(recipientId, locations[rand] + " Here's a Google Maps link: " + links[rand]);
+    sendMenu(recipientId);
 }
 
 /*
