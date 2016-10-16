@@ -735,7 +735,7 @@ function sendBusiness(recipientId, messageData) {
     });
     var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
     if (lastLoc[0].length < 2) {
-        sendTextMessage(recipientId, "I don't recognize that business or service. Please try again.");
+        sendTextMessage(recipientId, "I don't recognize that business, servery, or service. Please try again.");
         return;
     }
     if (lastLoc[0] === "East Servery doesn't exist. Try North, South, or West?") {
