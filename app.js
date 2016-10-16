@@ -426,6 +426,7 @@ function sendGifMessage(recipientId) {
 /*
  * Sends a Rice fun fact
  */
+
 function sendFunFact(recipientId) {
   var facts = ["\"Strigiformes\" is the taxonomical order of all owls!", 
   "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
