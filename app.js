@@ -485,7 +485,7 @@ function sendDirections(recipientId, messageData) {
     // Search for regexes
     var matches = [];
     locs.forEach(function (location) {
-        var reg = new RegExp(location[1].toLowerCase());
+        var reg = new RegExp(location[1]);
         if (reg.test(messageData) == true) {
             matches.push(location[0]);
         }
