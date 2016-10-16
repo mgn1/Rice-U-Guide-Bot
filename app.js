@@ -215,7 +215,10 @@ function receivedDeliveryConfirmation(event) {
     console.log("All message before %d were delivered.", watermark);
 }
 
-var userState = {"john":"menu"};
+var userState = {"john": {
+    name:"menu",
+    clarify:"false"
+}};
 /*
  * Get the state of the given user
  */
@@ -226,7 +229,11 @@ function getUserState(id) {
  * Set the state of the given user
  */
 function setUserState(id, newState) {
-    userState[id] = newState;
+    userState[id].name = newState;
+}
+
+function setUserDirectClarify(id, newClarify) {
+    userState[id].clarify = newClarify;
 }
 
 /*
@@ -250,10 +257,10 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-    if (getUserState(senderID) === undefined) {
+    if (getUserState(senderID).name === undefined) {
         setUserState(senderID, "menu");
 
-        console.log("undefined found. new state is " + getUserState(senderID));
+        console.log("undefined found. new state is " + getUserState(senderID).name);
     }
 
   console.log("Received message for user %d and page %d at %d with message:", 
@@ -272,17 +279,18 @@ function receivedMessage(event) {
 
   if (quickReply) {
       var quickReplyPayload = quickReply.payload;
-      if (quickReply.clarifyState) {
+      if (getUserState(senderID).clarify) {
         // TODO
       } else {
           setUserState(senderID, quickReplyPayload);
-          sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID + " state: " + getUserState(senderID));
+          sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
+              " state: " + getUserState(senderID).name);
       }
     return;
   }
 
   else if (messageText) {
-      var state = getUserState(senderID);
+      var state = getUserState(senderID).name;
       switch(state) {
           case "menu":
               sendMenu(senderID);
@@ -319,20 +327,17 @@ function sendMenu(recipientId) {
                 {
                     "content_type":"text",
                     "title":"Directions",
-                    "payload":"directions",
-                    "clarifyState":false
+                    "payload":"directions"
                 },
                 {
                     "content_type":"text",
                     "title":"Explore",
-                    "payload":"explore",
-                    "clarifyState":false
+                    "payload":"explore"
                 },
                 {
                     "content_type":"text",
                     "title":"Fun Facts",
-                    "payload":"fun facts",
-                    "clarifyState":false
+                    "payload":"fun facts"
                 }
             ]
         }
@@ -474,6 +479,9 @@ function sendDirections(recipientId, messageData) {
 }
 
 function sendConflictMenu(recipientId, conflictLists) {
+
+    setUserDirectClarify(recipientId, true);
+
     var messageData = {
         recipient: {
             id: recipientId
@@ -485,8 +493,7 @@ function sendConflictMenu(recipientId, conflictLists) {
                 return {
                     "content_type":"text",
                     "title":option,
-                    "payload":option,
-                    "clarifyState":true
+                    "payload":option
                 }
             })
 
@@ -530,20 +537,17 @@ function sendQuickReply(recipientId) {
         {
           "content_type":"text",
           "title":"Action",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION",
-            "clarifyState":false
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
         },
         {
           "content_type":"text",
           "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY",
-            "clarifyState":false
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
         },
         {
           "content_type":"text",
           "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA",
-            "clarifyState":false
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
         }
       ]
     }
