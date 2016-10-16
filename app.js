@@ -338,7 +338,7 @@ function receivedMessage(event) {
           sendExplore(senderID);
       } else if(messageText === "businesses") {
           setUserState(senderID, "businesses");
-          sendTextMessage(senderID, "You're in Businesses/Serveries. Enter a business or service, or exit using \"exit\".");
+          sendTextMessage(senderID, "You're in Businesses/Serveries. Enter a business or service, or exit using the keyword \"exit\".");
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
