@@ -344,7 +344,7 @@ function receivedMessage(event) {
           sendFunFact(senderID);
       } else if (messageText === "upupdowndownleftrightleftrightbastart") {
         setUserState(senderID, "menu");
-            var imageMessage = {
+        var omg = {
         recipient: {
             id: recipientId
         },
@@ -358,7 +358,7 @@ function receivedMessage(event) {
            }
          };
 
-        callSendAPI(imageMessage);
+        callSendAPI(omg);
       }
 
    } else {
