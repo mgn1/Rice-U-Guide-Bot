@@ -654,7 +654,7 @@ function sendDirections(recipientId, messageData) {
     console.log("Finished the matching: " + lastLoc);
 
     // Check if it is a conflict
-     if (lastLoc.substr(0,9) == "conflict:") {
+     if (lastLoc[0].substr(0,9) == "conflict:") {
         // Execute the conflictMenu
         setUserDirectClarify(recipientId, true);
         console.log("clarification is " + getUser(recipientId).clarify);
