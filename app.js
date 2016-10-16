@@ -715,15 +715,16 @@ function sendExplore(recipientId) {
  * Businesses/Serveries
  */
 function sendBusiness(recipientId, messageData) {
-    var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.*coffee.*)|(.*cafe.*)", "https://goo.gl/maps/zaHsCqqwe6p", "hours"],
-        ["The Hoot is Rice's late night food store", "(.*late.*)|(.*hoot.*)", "https://goo.gl/maps/zaHsCqqwe6p", "hoot hours"],
-        ["North", ".*north.*", "address", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
-        ["West", ".*west.*", "address", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
-        ["South", ".*south.*", "address", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+    var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.*coffee.*)|(.*cafe.*)", "hhttps://goo.gl/maps/EuipxLCTrdp", "Mon-Thurs: 7:30am - 1am, Fri: 7:30am - 5pm, Sat: 10am - 5pm, Sun: 2pm - 1am"],
+        ["The Hoot is Rice's late night food store", "(.*late.*)|(.*hoot.*)", "https://goo.gl/maps/EuipxLCTrdp", "Sunday — Wednesday 8:00 P.M. — 1:00 A.M, Thursday 8:00 P.M. — 1:30 A.M."],
+        ["Rice Bookstore sells school supplies and Rice merchandise.", ".*book.*", "https://goo.gl/maps/EuipxLCTrdp", "Weekdays 8:00am - 6:00pm, Saturday 10:00am - 3:00pm, Sunday NOON - 4:00pm"],
+        ["North Servery is one of Rice's serveries, serving Jones, Brown, and Martel colleges.", ".*north.*", "address", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+        ["West Servery is one of Rice's serveries, serving McMurtry and Duncan colleges.", ".*west.*", "address", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+        ["South Servery is one of Rice's serveries, serving Weiss and Hanszen colleges.", ".*south.*", "address", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
         ["East Servery doesn't exist. Try North, South, or West?", ".*east.*", "Not here", "Never"],
-        ["Baker", ".*baker.*", "address", "weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Baker Kitchen is closed on weekends."],
-        ["Seibel", "(.*seibel.*)|(.*siebel.*)", "address", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
-        ["Sid Rich", ".*sid.*", "address", "open on weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Sid Kitchen is closed on weekends"]];
+        ["Baker Servery is one of Rice's serveries, serving Baker college.", ".*baker.*", "address", "weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Baker Kitchen is closed on weekends"],
+        ["Seibel Servery is one of Rice's serveries, serving Lovett and Will Rice colleges.", "(.*seibel.*)|(.*siebel.*)", "address", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+        ["Sid Rich Servery is one of Rice's serveries, serving Sid Richardson college.", ".*sid.*", "address", "open on weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Sid Kitchen is closed on weekends"]];
 
     var matches = [];
     businesses.forEach(function (location) {
@@ -735,6 +736,10 @@ function sendBusiness(recipientId, messageData) {
     var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
     if (lastLoc[0].length < 2) {
         sendTextMessage(recipientId, "I don't recognize that business or service. Please try again.");
+        return;
+    }
+    if (lastLoc[0] === "East Servery doesn't exist. Try North, South, or West?") {
+        sendTextMessage(recipientId, lastLoc[0]);
         return;
     }
     sendTextMessage(recipientId, lastLoc[0]);
