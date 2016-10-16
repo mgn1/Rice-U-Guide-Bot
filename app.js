@@ -717,7 +717,7 @@ function sendExplore(recipientId) {
 }
 
 /*
- * Businesses/Serveries
+ * Businesses and Serveries
  */
 function sendBusiness(recipientId, messageData) {
     var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.*coffee.*)|(.*cafe.*)|(.*caffeine.*)", "https://goo.gl/maps/iDG2aGhfi4P2", "Mon-Thurs: 7:30am - 1am, Fri: 7:30am - 5pm, Sat: 10am - 5pm, Sun: 2pm - 1am"],
