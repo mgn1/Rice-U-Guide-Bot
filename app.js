@@ -288,7 +288,7 @@ function receivedMessage(event) {
               sendDirections(recipientID, messageText);
               break;
           case "fun facts":
-              sendTextMessage(senderID, "you are in fun fact");
+              sendFunFact(senderID);
               break;
           case "explore":
               sendTextMessage(senderID, "you are in explore");
@@ -399,6 +399,16 @@ function sendGifMessage(recipientId) {
   callSendAPI(messageData);
 }
 
+/*
+ * Sends a Rice fun fact
+ */
+function sendFunFact(recipientId) {
+    sendTextMessage(recipientId, "Charlie hasn't done this yet");
+}
+
+/*
+ * Sends directions
+ */
 function sendDirections(recipientId, messageData) {
     var locs = [
         ["Brown College", "brown\\scollege"],
