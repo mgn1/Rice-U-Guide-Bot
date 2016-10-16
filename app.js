@@ -715,14 +715,14 @@ function sendExplore(recipientId) {
  * Businesses/Serveries
  */
 function sendBusiness(recipientId, messageData) {
-    var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.coffee.)|(.cafe.)", "https://goo.gl/maps/zaHsCqqwe6p", "hours"],
+    var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.*coffee.*)|(.*cafe.*)", "https://goo.gl/maps/zaHsCqqwe6p", "hours"],
         ["The Hoot is Rice's late night food store", "(.late.)|(.hoot.)", "https://goo.gl/maps/zaHsCqqwe6p", "hoot hours"]];
 
     var matches = [];
     businesses.forEach(function (location) {
         var reg = new RegExp(location[1]);
         if (reg.test(messageData) === true) {
-            matches.push([location[0], location[2]]);
+            matches.push([location[0], location[2], location[3]]);
         }
     });
     var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
@@ -731,8 +731,8 @@ function sendBusiness(recipientId, messageData) {
         return;
     }
     sendTextMessage(recipientId, lastLoc[0]);
-    sendTextMessage(recipientId, "Their business hours are " + lastLoc[3] + ".");
-    sendTextMessage(recipientId, "You can find them here: " + lastLoc[2]);
+    sendTextMessage(recipientId, "Their business hours are " + lastLoc[2] + ".");
+    sendTextMessage(recipientId, "You can find them here: " + lastLoc[1]);
 }
 
 
