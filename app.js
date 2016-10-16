@@ -292,7 +292,7 @@ function receivedMessage(event) {
   if (quickReply) {
       var quickReplyPayload = quickReply.payload;
       // If there was a conflict in the directions, a clarification was requested.
-      if (getUser(senderID).clarify == true) {
+      if (getUser(senderID).clarify === true) {
           console.log("Clarification requested. The user's clarification is set to " + getUser(senderID).clarify);
           setUserDirectClarify(senderID, false);
           // In future updates, this text message would be replaced with a call to the URL-sending code.
@@ -315,7 +315,7 @@ function receivedMessage(event) {
                   sendExplore(senderID);
                   break;
               default:
-                  sendTextMessage(senderID, "wut did you do. state is " + state);
+                  sendTextMessage(senderID, "wut did you do. state is " + quickReplyPayload);
           }
       }
     return;
@@ -323,8 +323,7 @@ function receivedMessage(event) {
 
   else if (messageText) {
       messageText = messageText.toLowerCase();
-      if (messageText === "menu" || messageText === "go back" || messageText === "back"
-          || messageText === "exit" || messageText === "quit" || messageText === "escape") {
+      if (messageText === "menu" || messageText === "go back" || messageText === "back" || messageText === "exit" || messageText === "quit" || messageText === "escape") {
           setUserState(senderID, "menu");
           sendMenu(senderID);
       } else if (messageText === "directions" || messageText === "direction") {
@@ -524,12 +523,12 @@ function sendDirections(recipientId, messageData) {
     var matches = [];
     locs.forEach(function (location) {
         var reg = new RegExp(location[1]);
-        if (reg.test(messageData) == true) {
+        if (reg.test(messageData) === true) {
             matches.push(location[0]);
         }
     });
 
-    var lastLoc = matches.length == 0 ? "Location not found." : matches[matches.length-1];
+    var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
 
     console.log("Finished the matching: " + lastLoc);
 
