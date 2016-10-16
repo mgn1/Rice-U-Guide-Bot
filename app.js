@@ -507,10 +507,81 @@ function sendDirections(recipientId, messageData) {
         ]
     };
 
+    var locs = [["M D Anderson Biological Lab", "(m d anderson biological lab)|(abl)", "https://goo.gl/maps/GUr5RffcSju"], 
+["Anderson-Clarke Center", "(anderson-clarke center)|(acc)", "https://goo.gl/maps/4anc5qKPDus"], 
+["Abercromie Engineering Lab", "(abercromie engineering lab)|(ael)", "https://goo.gl/maps/wPBxz7HHnxF2"], 
+["Allen Center", "(allen center)|(aln)", "https://goo.gl/maps/SGGCSQvB8eJ2"], 
+["M D Anderson Hall", "(m d anderson hall)|(anh)", "https://goo.gl/maps/KYpf6JNxeSr"], 
+["Alice Pratt Brown Hall", "(alice pratt brown hall)|(apb)", "https://goo.gl/maps/toGFGJqMhin"], 
+["Baker College", "(baker college)|(bkc)", "https://goo.gl/maps/W5NJNnAFW2q"], 
+["James Baker Hall", "(james baker hall)|(bkh)", "https://goo.gl/maps/s5c2Ww5cTsS2"], 
+["Margaret Root Brown College", "(margaret root brown college)|(bnc)", "https://goo.gl/maps/wvXbrkh3vgp"], 
+["Brochstein Pavilion", "(brochstein pavilion)|(bpv)", "https://goo.gl/maps/9wZWZCeSAsJ2"], 
+["BioScience Research Collab", "(bioscience research collab)|(brc)", "https://goo.gl/maps/54Md9RPF5L42"], 
+["Brockman Hall for Physics", "(brockman hall for physics)|(brk)", "https://goo.gl/maps/njYn4m7rakt"], 
+["Cohen House", "(cohen house)|(coh)", "https://goo.gl/maps/MroVJ9tfG522"], 
+["Dell Butcher Hall", "(dell butcher hall)|(dbh)", "https://goo.gl/maps/M2U7GS7v98v"], 
+["Duncan College", "(duncan college)|(dcc)", "https://goo.gl/maps/U5w8gZ9gWFD2"], 
+["Anne and Charles Duncan Hall", "(anne and charles duncan hall)|(dch)", "https://goo.gl/maps/Bi1oX3jU9ak"], 
+["Facilities Engr Planning Bldg", "(facilities engr planning bldg)|(fep)", "https://goo.gl/maps/48giEEQKHr52"], 
+["Fondren Library", "(fondren library)|(fon)", "https://goo.gl/maps/rjZhEt4DPmH2"], 
+["Greenbriar Building", "(greenbriar building)|(gbb)", "https://goo.gl/maps/S4q88t38iX72"], 
+["Greenhouse", "(greenhouse)|(ghs)", "https://goo.gl/maps/cMVgGo6CC4J2"], 
+["George R Brown Hall", "(george r brown hall)|(grb)", "https://goo.gl/maps/oMB2ztggJmk"], 
+["Gibbs Rec and Wellness Center", "(gibbs rec and wellness center)|(grw)", "https://goo.gl/maps/WXVQGEqEwJF2"], 
+["Hamman Hall", "(hamman hall)|(ham)", "https://goo.gl/maps/VqmcP2hFpDn"], 
+["Herman Brown Hall for Math Sci", "(herman brown hall for math sci)|(hbh)", "https://goo.gl/maps/xc1Edcf4rsy"], 
+["Holloway Field and Ley Track", "(holloway field and ley track)|(hfd)", "https://goo.gl/maps/6fdEGhsb8PA2"], 
+["Harry C Hanszen College", "(harry c hanszen college)|(hnz)", "https://goo.gl/maps/Ko15SBHpRfP2"], 
+["Robert R Herring Hall", "(robert r herring hall)|(hrg)", "https://goo.gl/maps/7vsFvrLtkco"], 
+["Herzstein Hall", "(herzstein hall)|(hrz)", "https://goo.gl/maps/NgTG6Qoou722"], 
+["Huff House", "(huff house)|(huf)", "https://goo.gl/maps/FM8Q9CVtkuy"], 
+["Humanities Building", "(humanities building)|(hum)", "https://goo.gl/maps/XKesMenuPar"], 
+["Jones College", "(jones college)|(joc)", "https://goo.gl/maps/X51ckCbXZx12"], 
+["Howard Keck Hall", "(howard keck hall)|(kck)", "https://goo.gl/maps/LhoKRLHxLdD2"], 
+["Keith-Weiss Geological Lab", "(keith-weiss geological lab)|(kwg)", "https://goo.gl/maps/Gd53FZmieNk"], 
+["Ley Student Center", "(ley student center)|(ley)", "https://goo.gl/maps/RjSgNEXuawr"], 
+["Lovett College", "(lovett college)|(lvc)", "https://goo.gl/maps/38bZfTnfjZ52"], 
+["Lovett Hall", "(lovett hall)|(lvh)", "https://goo.gl/maps/vdcciUGYHRx"], 
+["McMurtry College", "(mcmurtry college)|(mcm)", "https://goo.gl/maps/bUfj3r4ooAm"], 
+["Janice and Robert McNair Hall", "(janice and robert mcnair hall)|(mcn)", "https://goo.gl/maps/xbvGSC2u9gq"], 
+["Martel Center for Cont Studies", "(martel center for cont studies)|(mcs)", "https://goo.gl/maps/J1hnhYiVydJ2"], 
+["Mechanical Engineering Bldg", "(mechanical engineering bldg)|(meb)", "https://goo.gl/maps/W68jhRG9Zn42"], 
+["Media Center", "(media center)|(med)", "https://goo.gl/maps/bd97WVyMQpo"], 
+["Mechanical Laboratory", "(mechanical laboratory)|(mel)", "https://goo.gl/maps/XCwQtshnjgs"], 
+["Martel College", "(martel college)|(mlc)", "https://goo.gl/maps/49K7eNMqhBF2"], 
+["S G Mudd Computer Science Lab", "(s g mudd computer science lab)|(mud)", "https://goo.gl/maps/Qm9bLsEgUv52"], 
+["North Servery", "(north servery)|(nsv)", "https://goo.gl/maps/5agW4LkomU22"], 
+["Oshman Engineer Design Kichen", "(oshman engineer design kichen)|(oed)", "https://goo.gl/maps/D93h8MtvXey"], 
+["Police Department", "(police department)|(pol)", "https://goo.gl/maps/5kKwi9gp53S2"], 
+["Rice Children's Campus", "(rice children's campus)|(rcc)", "https://goo.gl/maps/kUGpmokVrEx"], 
+["Reckling Park at Cameron Field", "(reckling park at cameron field)|(rck)", "https://goo.gl/maps/WsMJsD41aN82"], 
+["Rice Graduate Apartments", "(rice graduate apartments)|(rga)", "https://goo.gl/maps/j6jAEtDUQ7T2"], 
+["Rice Health and Wellness Cntr", "(rice health and wellness cntr)|(rhw)", "https://goo.gl/maps/gzJuEixXTZu"], 
+["Rice Memorial Center", "(rice memorial center)|(rmc)", "https://goo.gl/maps/EuipxLCTrdp"], 
+["Rice Village Apartments", "(rice village apartments)|(rva)", "https://goo.gl/maps/i5Md9yZNEPn"], 
+["Ryon Engineering Laboratory", "(ryon engineering laboratory)|(ryn)", "https://goo.gl/maps/oQD8unXVkJo"], 
+["Rayzor Hall", "(rayzor hall)|(rzr)", "https://goo.gl/maps/DCvjNkpCE872"], 
+["Sewall Hall", "(sewall hall)|(sew)", "https://goo.gl/maps/zaHsCqqwe6p"], 
+["South Plant", "(south plant)|(spl)", "https://goo.gl/maps/dYqLh2DdN7J2"], 
+["Sid Richardson College", "(sid richardson college)|(src)", "https://goo.gl/maps/YP5bYXohTCP2"], 
+["Space Science and Tech Bldg", "(space science and tech bldg)|(sst)", "https://goo.gl/maps/SJWfraBFJV42"], 
+["South Servery", "(south servery)|(ssv)", "https://goo.gl/maps/BGGmY981uMx"], 
+["Rice Stadium", "(rice stadium)|(sta)", "https://goo.gl/maps/U2DX4dsA22n/"], 
+["To Be Announced", "(to be announced)|(tba)", "SPECIAL CASE - EXPLAIN"], 
+["Tudor Fieldhouse", "(tudor fieldhouse)|(tud)", "https://goo.gl/maps/JfsuZKArcHr"], 
+["Wiess President's House", "(wiess president's house)|(wph)", "https://goo.gl/maps/wfZqjZVPChs"], 
+["Will Rice College", "(will rice college)|(wrc)", "https://goo.gl/maps/AypESjPaey22"], 
+["Harry C Weiss College", "(harry c weiss college)|(wsc)", "https://goo.gl/maps/97Rx2gFEEbP2"], 
+["West Servery", "(west servery)|(wsv)", "https://goo.gl/maps/6kUsgQyi3h12"], 
+]
+
     /*
      Regex expressions for all the various places on campus.
       See http://www.rice.edu/maps/Rice-University-Color-Campus-Map.pdf for a list of the major spots on campus.
       */
+
+      /*
     var locs = [
         ["Abercrombie Engineering Laboratory", "abercrombie\\s(engineering\\slaboratory)*"],
         ["Allen Business Center", "allen\\s(business\\s)*center"],
@@ -562,60 +633,14 @@ function sendDirections(recipientId, messageData) {
         ["Jones College Masters House", "jones(\\scollege)*(\\smaster)+.*(house)*"],
         ["Keck Hall", "kec\\shall"],
         ["Keith-Wiess Geological Laboratories", "keith-*\\s*wiess\\s*(geological\\slaborator(ies)|y)*"]
-                                                        /*,["Ley Student Center",
-                                                            ["Lovett College",
-                                                                ["Lovett College Masters House", "lovett(\\scollege)*(\\smaster)+.*(house)*"],
-                                                                    ["Lovett Hall",
-                                                                        ["Martel College",
-                                                                            ["Martel College Masters House",
-                                                                                ["McMurtry Auditorium",
-                                                                                    ["McMurtry College",
-                                                                                        ["McMurtry College Masters House",
-                                                                                            ["McNair Hall",
-                                                                                                ["Mechanical Engineering Building",
-                                                                                                    ["Mechanical Laboratory",
-                                                                                                        ["Media Center",
-                                                                                                            ["Mudd Computer Science Building",
-                                                                                                                ["North Servery",
-                                                                                                                    ["Oshman Engineering Design Kitchen",
-                                                                                                                        ["Rayzor Hall",
-                                                                                                                            ["Reckling Park at Cameron Field",
-                                                                                                                                ["Rice Children's Campus",
-                                                                                                                                    ["Rice Graduate Apartments",
-                                                                                                                                        ["Rice Memorial Center",
-                                                                                                                                            ["Rice Memorial Chapel",
-                                                                                                                                                ["Rice Stadium",
-                                                                                                                                                    ["Morton L. Rice Student Health Center",
-                                                                                                                                                        ["School of Architecture",
-                                                                                                                                                            ["Shepherd School of Music",
-                                                                                                                                                                ["Sid Richardson College",
-                                                                                                                                                                    ["Sid Richardson College Masters House",
-                                                                                                                                                                        ["Ryon Engineering Laboratory",
-                                                                                                                                                                            ["Seibel Servery",
-                                                                                                                                                                                ["Sewall Hall",
-                                                                                                                                                                                    ["School of Social Sciences",
-                                                                                                                                                                                        ["South Plant",
-                                                                                                                                                                                            ["South Servery",
-                                                                                                                                                                                                ["Space Science and Technology Building",
-                                                                                                                                                                                                    ["Tudor Fieldhouse and Youngkin Center",
-                                                                                                                                                                                                        ["West Servery",
-                                                                                                                                                                                                            ["conflict:Wiess",
-                                                                                                                                                                                                                ["Wiess College",
-                                                                                                                                                                                                                    ["Wiess President's House",
-                                                                                                                                                                                                                        ["Wiess School of Natural Sciences",
-                                                                                                                                                                                                                            ["Will Rice College",
-                                                                                                                                                                                                                                ["Will Rice College Masters House",
-                                                                                                                                                                                                                                    ["Wilson House",*/
-
-
-    ];
+    ];*/
 
     // Search for regexes
     var matches = [];
     locs.forEach(function (location) {
         var reg = new RegExp(location[1]);
         if (reg.test(messageData) === true) {
-            matches.push(location[0]);
+            matches.push([location[0], location[2]]);
         }
     });
 
@@ -636,7 +661,7 @@ function sendDirections(recipientId, messageData) {
         console.log("clarification is " + getUser(recipientId).clarify);
         sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)]);
     } else {
-        sendTextMessage(recipientId, lastLoc);
+        sendTextMessage(recipientId, lastLoc[0] +" is located at " + lastLoc[1]);
     }
 }
 
