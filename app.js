@@ -361,7 +361,9 @@ function receivedMessage(event) {
           setTimeout(function() {
           sendMenu(recipientId);
           }, 2000);
-      } else {
+      }
+
+   } else {
           var state = getUser(senderID).stateName;
       switch (state) {
           case "menu":
