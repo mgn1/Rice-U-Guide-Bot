@@ -320,19 +320,19 @@ function sendMenu(recipientId) {
                     "content_type":"text",
                     "title":"Directions",
                     "payload":"directions",
-                    clarifyState:false
+                    "clarifyState":false
                 },
                 {
                     "content_type":"text",
                     "title":"Explore",
                     "payload":"explore",
-                    clarifyState:false
+                    "clarifyState":false
                 },
                 {
                     "content_type":"text",
                     "title":"Fun Facts",
                     "payload":"fun facts",
-                    clarifyState:false
+                    "clarifyState":false
                 }
             ]
         }
@@ -486,7 +486,7 @@ function sendConflictMenu(recipientId, conflictLists) {
                     "content_type":"text",
                     "title":option,
                     "payload":option,
-                    clarifyState:true
+                    "clarifyState":true
                 }
             })
 
@@ -530,17 +530,20 @@ function sendQuickReply(recipientId) {
         {
           "content_type":"text",
           "title":"Action",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION",
+            "clarifyState":false
         },
         {
           "content_type":"text",
           "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY",
+            "clarifyState":false
         },
         {
           "content_type":"text",
           "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA",
+            "clarifyState":false
         }
       ]
     }
