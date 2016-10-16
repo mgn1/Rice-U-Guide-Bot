@@ -301,8 +301,7 @@ function receivedMessage(event) {
       // Otherwise, this is our state-changing code from the main menu.
        else {
           setUserState(senderID, quickReplyPayload);
-          sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
-              " state: " + getUser(senderID).stateName + " clarify? " + getUser(senderID).clarify);
+          sendTextMessage(senderID, "You are in " + quickReplyPayload + ". Exit using the keyword \"exit\".");
       }
     return;
   }
