@@ -472,7 +472,9 @@ function sendFunFact(recipientId) {
   "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which."];
 
   sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
-    sendMenu(recipientId);
+    setTimeout(function() {
+        sendMenu(recipientId);
+    }, 2000);
 }
 
 /*
@@ -655,7 +657,7 @@ function sendConflictMenu(recipientId, conflictLists) {
  * Sends the user to a location to explore
  */
 function sendExplore(recipientId) {
-    var locations = ["The Frog Wall is a wall that makes frog noises if you do a thing? If you want to go to it, here's a maps link.",
+    var locations = ["The Frog Wall is a wall that sounds just like a frog chirping if you lick your thumb and run it down the wall.",
         "Rice has a piece of the historic Berlin wall on campus that divided Germany from 1961 to 1989.",
         "Duncan Hall, Rice's Computational Engineering Building, has an incredible ceiling inspired by many world cultures.",
         "Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it."];
@@ -688,7 +690,9 @@ function sendExplore(recipientId) {
 
     callSendAPI(imageMessage);
     sendTextMessage(recipientId, locations[rand] + " Here's a Google Maps link: " + links[rand]);
-    sendMenu(recipientId);
+    setTimeout(function() {
+        sendMenu(recipientId);
+    }, 2000);
 }
 
 /*
