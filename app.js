@@ -415,49 +415,6 @@ function receivedMessageRead(event) {
     "number %d", watermark, sequenceNumber);
 }
 
-/*
- * Send an image using the Send API.
- *
- */
-function sendImageMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "image",
-        payload: {
-          url: SERVER_URL + "/assets/rift.png"
-        }
-      }
-    }
-  };
-
-  callSendAPI(messageData);
-}
-
-/*
- * Send a Gif using the Send API.
- *
- */
-function sendGifMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "image",
-        payload: {
-          url: SERVER_URL + "/assets/instagram_logo.gif"
-        }
-      }
-    }
-  };
-
-  callSendAPI(messageData);
-}
 
 /*
  * Sends a Rice fun fact
@@ -507,51 +464,51 @@ function sendDirections(recipientId, messageData) {
         ]
     };
 
-    var locs = [["M D Anderson Biological Lab", "(m d anderson biological lab)|(abl)", "https://goo.gl/maps/GUr5RffcSju"], 
-["Anderson-Clarke Center", "(anderson-clarke center)|(acc)", "https://goo.gl/maps/4anc5qKPDus"], 
-["Abercromie Engineering Lab", "(abercromie engineering lab)|(ael)", "https://goo.gl/maps/wPBxz7HHnxF2"], 
-["Allen Center", "(allen center)|(aln)", "https://goo.gl/maps/SGGCSQvB8eJ2"], 
-["M D Anderson Hall", "(m d anderson hall)|(anh)", "https://goo.gl/maps/KYpf6JNxeSr"], 
-["Alice Pratt Brown Hall", "(alice pratt brown hall)|(apb)", "https://goo.gl/maps/toGFGJqMhin"], 
-["Baker College", "(baker college)|(bkc)", "https://goo.gl/maps/W5NJNnAFW2q"], 
-["James Baker Hall", "(james baker hall)|(bkh)", "https://goo.gl/maps/s5c2Ww5cTsS2"], 
-["Margaret Root Brown College", "(margaret root brown college)|(bnc)", "https://goo.gl/maps/wvXbrkh3vgp"], 
-["Brochstein Pavilion", "(brochstein pavilion)|(bpv)", "https://goo.gl/maps/9wZWZCeSAsJ2"], 
-["BioScience Research Collab", "(bioscience research collab)|(brc)", "https://goo.gl/maps/54Md9RPF5L42"], 
-["Brockman Hall for Physics", "(brockman hall for physics)|(brk)", "https://goo.gl/maps/njYn4m7rakt"], 
-["Cohen House", "(cohen house)|(coh)", "https://goo.gl/maps/MroVJ9tfG522"], 
-["Dell Butcher Hall", "(dell butcher hall)|(dbh)", "https://goo.gl/maps/M2U7GS7v98v"], 
-["Duncan College", "(duncan college)|(dcc)", "https://goo.gl/maps/U5w8gZ9gWFD2"], 
-["Anne and Charles Duncan Hall", "(anne and charles duncan hall)|(dch)", "https://goo.gl/maps/Bi1oX3jU9ak"], 
-["Facilities Engr Planning Bldg", "(facilities engr planning bldg)|(fep)", "https://goo.gl/maps/48giEEQKHr52"], 
-["Fondren Library", "(fondren library)|(fon)", "https://goo.gl/maps/rjZhEt4DPmH2"], 
-["Greenbriar Building", "(greenbriar building)|(gbb)", "https://goo.gl/maps/S4q88t38iX72"], 
-["Greenhouse", "(greenhouse)|(ghs)", "https://goo.gl/maps/cMVgGo6CC4J2"], 
-["George R Brown Hall", "(george r brown hall)|(grb)", "https://goo.gl/maps/oMB2ztggJmk"], 
-["Gibbs Rec and Wellness Center", "(gibbs rec and wellness center)|(grw)", "https://goo.gl/maps/WXVQGEqEwJF2"], 
-["Hamman Hall", "(hamman hall)|(ham)", "https://goo.gl/maps/VqmcP2hFpDn"], 
+    var locs = [["M D Anderson Biological Lab", "(m d anderson biological lab)|(abl)|((m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*)", "https://goo.gl/maps/GUr5RffcSju"],
+["Anderson-Clarke Center", "(anderson-clarke center)|(acc)|(anderson((-|\\s)+clarke)*\\scenter)", "https://goo.gl/maps/4anc5qKPDus"],
+["Abercromie Engineering Lab", "(abercromie engineering lab)|(ael)|(abercrombie\\s(engineering\\slaboratory)*)", "https://goo.gl/maps/wPBxz7HHnxF2"],
+["Allen Center", "(allen center)|(aln)|(allen\\s(business\\s)*center)", "https://goo.gl/maps/SGGCSQvB8eJ2"],
+["M D Anderson Hall", "(m d anderson hall)|(anh)|((m\\.*d\\.*\\s)*anderson\\shall)", "https://goo.gl/maps/KYpf6JNxeSr"],
+["Alice Pratt Brown Hall", "(alice pratt brown hall)|(apb)|((((alice\\s)*(pratt\\s)+)|((alice\\s)+(pratt\\s)*))brown\\shall)", "https://goo.gl/maps/toGFGJqMhin"],
+["Baker College", "(baker college)|(bkc)|(baker(\\scollege)*)", "https://goo.gl/maps/W5NJNnAFW2q"],
+["James Baker Hall", "(james baker hall)|(bkh)|((james\\s(a\\.*\\s)*)*baker\\shall)", "https://goo.gl/maps/s5c2Ww5cTsS2"],
+["Margaret Root Brown College", "(margaret root brown college)|(bnc)|(brown(\\scollege)*)", "https://goo.gl/maps/wvXbrkh3vgp"],
+["Brochstein Pavilion", "(brochstein pavilion)|(bpv)|(brochstein(\\spavilion)*)", "https://goo.gl/maps/9wZWZCeSAsJ2"],
+["BioScience Research Collab", "(bioscience research collab)|(brc)|(bioscience(\\sresearch)*(\\scollaborative)*)", "https://goo.gl/maps/54Md9RPF5L42"],
+["Brockman Hall for Physics", "(brockman hall for physics)|(brk)|(brockman(\\shall)*(\\sfor\\sphysics)*)", "https://goo.gl/maps/njYn4m7rakt"],
+["Cohen House", "(cohen house)|(coh)|(cohen(\\shouse)*)", "https://goo.gl/maps/MroVJ9tfG522"],
+["Dell Butcher Hall", "(dell butcher hall)|(dbh)|(((dell\\s)+(butcher\\s)*)|((dell\\s)*(butcher\\s)+)hall)", "https://goo.gl/maps/M2U7GS7v98v"],
+["Duncan College", "(duncan college)|(dcc)|(duncan\\scollege)", "https://goo.gl/maps/U5w8gZ9gWFD2"],
+["Anne and Charles Duncan Hall", "(anne and charles duncan hall)|(dch)|(duncan\\shall)", "https://goo.gl/maps/Bi1oX3jU9ak"],
+["Facilities Engr Planning Bldg", "(facilities engr planning bldg)|(fep)|(facilities\\s(engineering and planning\\s)*building)", "https://goo.gl/maps/48giEEQKHr52"],
+["Fondren Library", "(fondren library)|(fon)|(((fondren\\s)*(library)+)|((fondren)+\\s*(library)*))", "https://goo.gl/maps/rjZhEt4DPmH2"],
+["Greenbriar Building", "(greenbriar building)|(gbb)|(greenbriar(\\sbuilding)*)", "https://goo.gl/maps/S4q88t38iX72"],
+["Greenhouse", "(greenhouse)|(ghs)|(greenhouse)", "https://goo.gl/maps/cMVgGo6CC4J2"],
+["George R Brown Hall", "(george r brown hall)|(grb)|((((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall)", "https://goo.gl/maps/oMB2ztggJmk"],
+["Gibbs Rec and Wellness Center", "(gibbs rec and wellness center)|(grw)|(((gibbs\\s)*rec(reation)*\\s(and\\swellness\\s)*center)|(gym))", "https://goo.gl/maps/WXVQGEqEwJF2"],
+["Hamman Hall", "(hamman hall)|(ham)|(hamman\\shall)", "https://goo.gl/maps/VqmcP2hFpDn"],
 ["Herman Brown Hall for Math Sci", "(herman brown hall for math sci)|(hbh)", "https://goo.gl/maps/xc1Edcf4rsy"], 
-["Holloway Field and Ley Track", "(holloway field and ley track)|(hfd)", "https://goo.gl/maps/6fdEGhsb8PA2"], 
-["Harry C Hanszen College", "(harry c hanszen college)|(hnz)", "https://goo.gl/maps/Ko15SBHpRfP2"], 
-["Robert R Herring Hall", "(robert r herring hall)|(hrg)", "https://goo.gl/maps/7vsFvrLtkco"], 
+["Holloway Field and Ley Track", "(holloway field and ley track)|(hfd)|(holloway(\\sfield)*)", "https://goo.gl/maps/6fdEGhsb8PA2"],
+["Harry C Hanszen College", "(harry c hanszen college)|(hnz)|(hanszen(\\scollege)*)", "https://goo.gl/maps/Ko15SBHpRfP2"],
+["Robert R Herring Hall", "(robert r herring hall)|(hrg)|((robert\\sr\.*\\s)*herring\\shall)", "https://goo.gl/maps/7vsFvrLtkco"],
 ["Herzstein Hall", "(herzstein hall)|(hrz)", "https://goo.gl/maps/NgTG6Qoou722"], 
 ["Huff House", "(huff house)|(huf)", "https://goo.gl/maps/FM8Q9CVtkuy"], 
 ["Humanities Building", "(humanities building)|(hum)", "https://goo.gl/maps/XKesMenuPar"], 
-["Jones College", "(jones college)|(joc)", "https://goo.gl/maps/X51ckCbXZx12"], 
-["Howard Keck Hall", "(howard keck hall)|(kck)", "https://goo.gl/maps/LhoKRLHxLdD2"], 
-["Keith-Weiss Geological Lab", "(keith-weiss geological lab)|(kwg)", "https://goo.gl/maps/Gd53FZmieNk"], 
+["Jones College", "(jones college)|(joc)|(jones)", "https://goo.gl/maps/X51ckCbXZx12"],
+["Howard Keck Hall", "(howard keck hall)|(kck)|(kec\\shall)", "https://goo.gl/maps/LhoKRLHxLdD2"],
+["Keith-Weiss Geological Lab", "(keith-weiss geological lab)|(kwg)|(keith-*\\s*wiess\\s*(geological\\slaborator(ies)|y)*)", "https://goo.gl/maps/Gd53FZmieNk"],
 ["Ley Student Center", "(ley student center)|(ley)", "https://goo.gl/maps/RjSgNEXuawr"], 
-["Lovett College", "(lovett college)|(lvc)", "https://goo.gl/maps/38bZfTnfjZ52"], 
+["Lovett College", "(lovett college)|(lvc)", "https://goo.gl/maps/38bZfTnfjZ52"],
 ["Lovett Hall", "(lovett hall)|(lvh)", "https://goo.gl/maps/vdcciUGYHRx"], 
-["McMurtry College", "(mcmurtry college)|(mcm)", "https://goo.gl/maps/bUfj3r4ooAm"], 
+["McMurtry College", "(mcmurtry college)|(mcm)|(mcmurtry)", "https://goo.gl/maps/bUfj3r4ooAm"],
 ["Janice and Robert McNair Hall", "(janice and robert mcnair hall)|(mcn)", "https://goo.gl/maps/xbvGSC2u9gq"], 
 ["Martel Center for Cont Studies", "(martel center for cont studies)|(mcs)", "https://goo.gl/maps/J1hnhYiVydJ2"], 
 ["Mechanical Engineering Bldg", "(mechanical engineering bldg)|(meb)", "https://goo.gl/maps/W68jhRG9Zn42"], 
 ["Media Center", "(media center)|(med)", "https://goo.gl/maps/bd97WVyMQpo"], 
 ["Mechanical Laboratory", "(mechanical laboratory)|(mel)", "https://goo.gl/maps/XCwQtshnjgs"], 
-["Martel College", "(martel college)|(mlc)", "https://goo.gl/maps/49K7eNMqhBF2"], 
+["Martel College", "(martel college)|(mlc)|(Martel)", "https://goo.gl/maps/49K7eNMqhBF2"],
 ["S G Mudd Computer Science Lab", "(s g mudd computer science lab)|(mud)", "https://goo.gl/maps/Qm9bLsEgUv52"], 
-["North Servery", "(north servery)|(nsv)", "https://goo.gl/maps/5agW4LkomU22"], 
+["North Servery", "(north servery)|(nsv)|(north)", "https://goo.gl/maps/5agW4LkomU22"],
 ["Oshman Engineer Design Kichen", "(oshman engineer design kichen)|(oed)", "https://goo.gl/maps/D93h8MtvXey"], 
 ["Police Department", "(police department)|(pol)", "https://goo.gl/maps/5kKwi9gp53S2"], 
 ["Rice Children's Campus", "(rice children's campus)|(rcc)", "https://goo.gl/maps/kUGpmokVrEx"], 
@@ -564,16 +521,16 @@ function sendDirections(recipientId, messageData) {
 ["Rayzor Hall", "(rayzor hall)|(rzr)", "https://goo.gl/maps/DCvjNkpCE872"], 
 ["Sewall Hall", "(sewall hall)|(sew)", "https://goo.gl/maps/zaHsCqqwe6p"], 
 ["South Plant", "(south plant)|(spl)", "https://goo.gl/maps/dYqLh2DdN7J2"], 
-["Sid Richardson College", "(sid richardson college)|(src)", "https://goo.gl/maps/YP5bYXohTCP2"], 
+["Sid Richardson College", "(sid richardson college)|(src)|(sid)|(sid rich)", "https://goo.gl/maps/YP5bYXohTCP2"],
 ["Space Science and Tech Bldg", "(space science and tech bldg)|(sst)", "https://goo.gl/maps/SJWfraBFJV42"], 
-["South Servery", "(south servery)|(ssv)", "https://goo.gl/maps/BGGmY981uMx"], 
+["South Servery", "(south servery)|(ssv)|(siebel)", "https://goo.gl/maps/BGGmY981uMx"],
 ["Rice Stadium", "(rice stadium)|(sta)", "https://goo.gl/maps/U2DX4dsA22n/"], 
 ["To Be Announced", "(to be announced)|(tba)", "SPECIAL CASE - EXPLAIN"], 
-["Tudor Fieldhouse", "(tudor fieldhouse)|(tud)", "https://goo.gl/maps/JfsuZKArcHr"], 
+["Tudor Fieldhouse", "(tudor fieldhouse)|(tud)|(tudor)", "https://goo.gl/maps/JfsuZKArcHr"],
 ["Wiess President's House", "(wiess president's house)|(wph)", "https://goo.gl/maps/wfZqjZVPChs"], 
 ["Will Rice College", "(will rice college)|(wrc)", "https://goo.gl/maps/AypESjPaey22"], 
-["Harry C Weiss College", "(harry c weiss college)|(wsc)", "https://goo.gl/maps/97Rx2gFEEbP2"], 
-["West Servery", "(west servery)|(wsv)", "https://goo.gl/maps/6kUsgQyi3h12"]];
+["Harry C Weiss College", "(harry c weiss college)|(wsc)|(wiess)|(weiss)", "https://goo.gl/maps/97Rx2gFEEbP2"],
+["West Servery", "(west servery)|(wsv)|(west)", "https://goo.gl/maps/6kUsgQyi3h12"]];
 
     /*
      Regex expressions for all the various places on campus.
