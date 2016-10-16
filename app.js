@@ -294,7 +294,7 @@ function receivedMessage(event) {
               sendTextMessage(senderID, "you are in explore");
               break;
           default:
-              sendTextMessage(senderID, "wut did you do");
+              sendTextMessage(senderID, "wut did you do. state is "+ state);
       }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
