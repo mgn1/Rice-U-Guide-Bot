@@ -312,7 +312,8 @@ function receivedMessage(event) {
                   break;
               case "businesses":
                   setUserState(senderID, "businesses");
-                  sendBusiness(senderID, "You are in Businesses/Serveries. Enter a business or service, or exit using the keyword \"exit\".")
+                  sendBusiness(senderID, "You are in Businesses/Serveries. Enter a business or service, or exit using the keyword \"exit\".");
+                  break;
               case "explore":
                   setUserState(senderID, "menu");
                   sendExplore(senderID);
@@ -718,7 +719,7 @@ function sendBusiness(recipientId, messageData) {
         ["The Hoot is Rice's late night food store", "(.late.)|(.hoot.)", "https://goo.gl/maps/zaHsCqqwe6p", "hoot hours"]];
 
     var matches = [];
-    locs.forEach(function (location) {
+    businesses.forEach(function (location) {
         var reg = new RegExp(location[1]);
         if (reg.test(messageData) === true) {
             matches.push([location[0], location[2]]);
