@@ -308,7 +308,7 @@ function receivedMessage(event) {
   }
 
   else if (messageText) {
-      if (messageText === "menu" || messageText === "go back" || messageText === "back" || messageText === "exit" || messageText === "quit") {
+      if (messageText === "menu" || messageText === "go back" || messageText === "back" || messageText === "exit" || messageText === "quit" || messageText === "escape") {
           setUserState(senderID, "menu");
           sendMenu(senderID);
       }
