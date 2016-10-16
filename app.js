@@ -498,7 +498,7 @@ function sendDirections(recipientId, messageData) {
 ["Herman Brown Hall for Math Sci", "(herman brown hall for math sci)|(hbh)|(herman\\sbrown\\shall)", "https://goo.gl/maps/xc1Edcf4rsy"],
 ["Baker College", "(baker college)|(bkc)|(baker(\\scollege)*)", "https://goo.gl/maps/W5NJNnAFW2q"],
 ["James Baker Hall", "(james baker hall)|(bkh)|((james\\s(a\\.*\\s)*)*baker\\shall)", "https://goo.gl/maps/s5c2Ww5cTsS2"],
-["conflict: Pavilion", "pavilion"],
+["conflict:Pavilion", "pavilion"],
 ["Booth Centennial Pavilion", "(booth\\s)*centennial\\spavilion", "https://goo.gl/maps/9wZWZCeSAsJ2"],
 ["Brochstein Pavilion", "(brochstein pavilion)|(bpv)|(brochstein(\\spavilion)*)", "https://goo.gl/maps/9wZWZCeSAsJ2"],
 ["BioScience Research Collab", "(bioscience research collab)|(brc)|(bioscience(\\sresearch)*(\\scollaborative)*)", "https://goo.gl/maps/54Md9RPF5L42"],
