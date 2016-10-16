@@ -415,7 +415,12 @@ function sendGifMessage(recipientId) {
  * Sends a Rice fun fact
  */
 function sendFunFact(recipientId) {
-    sendTextMessage(recipientId, "Charlie hasn't done this yet");
+  var facts = ["\"Strigiformes\" is the taxonomical order of all owls!", 
+  "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
+  "There is no way to justify Martel’s existence as a college.",
+  "Frogs are members of the order \"Anura\", and on wet nights you might find a bunch croaking around!"];
+
+  sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
 }
 
 /*
