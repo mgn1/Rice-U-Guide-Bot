@@ -269,7 +269,8 @@ function receivedMessage(event) {
     if (getUser(senderID) === undefined) {
         makeUser(senderID);
 
-        console.log("undefined found. new state is " + getUser(senderID).stateName);
+        console.log("undefined found. new state is " + getUser(senderID).stateName +
+            " with clarification " + getUser(senderID).clarify);
     }
 
   console.log("Received message for user %d and page %d at %d with message:", 
