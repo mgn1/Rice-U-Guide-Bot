@@ -744,7 +744,7 @@ function sendBusiness(recipientId, messageData) {
     }
     sendTextMessage(recipientId, lastLoc[0]);
     setTimeout(function() {
-        sendTextMessage(recipientId, "Their business hours are " + lastLoc[2] + ".");
+        sendTextMessage(recipientId, "Their business hours are: " + lastLoc[2] + ".");
     }, 1500);
     setTimeout(function() {
         sendTextMessage(recipientId, "You can find them here: " + lastLoc[1]);
