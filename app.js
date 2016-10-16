@@ -312,7 +312,7 @@ function receivedMessage(event) {
                   break;
               case "businesses":
                   setUserState(senderID, "businesses");
-                  sendBusiness(senderID, "You're in Businesses. Enter a business or service, or exit by using \"exit\".");
+                  sendTextMessage(senderID, "You're in Businesses/Serveries. Enter a business or service, or exit by using \"exit\".");
                   break;
               case "explore":
                   setUserState(senderID, "menu");
@@ -338,7 +338,7 @@ function receivedMessage(event) {
           sendExplore(senderID);
       } else if(messageText === "businesses") {
           setUserState(senderID, "businesses");
-          sendTextMessage(senderID, "You're in Businesses. Enter a business or service, or exit using \"exit\".");
+          sendTextMessage(senderID, "You're in Businesses/Serveries. Enter a business or service, or exit using \"exit\".");
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
@@ -633,7 +633,7 @@ function sendDirections(recipientId, messageData) {
         sendConflictMenu(recipientId, conflict[lastLoc[0].substr(9, lastLoc[0].length)]);
     } else {
          if (lastLoc[0].length <= 2) {
-             sendTextMessage(recipientId, "I don't recognize that location. Try again.");
+             sendTextMessage(recipientId, "I don't recognize that location. Please try again.");
          } else {
             sendTextMessage(recipientId, lastLoc[0] + " is located at " + lastLoc[1]);
          }
@@ -726,6 +726,10 @@ function sendBusiness(recipientId, messageData) {
         }
     });
     var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
+    if (lastLoc[0].length < 2) {
+        sendTextMessage(recipientId, "I don't recognize that business or service. Please try again.");
+        return;
+    }
     sendTextMessage(recipientId, lastLoc[0]);
     sendTextMessage(recipientId, "Their business hours are " + lastLoc[3] + ".");
     sendTextMessage(recipientId, "You can find them here: " + lastLoc[2]);
