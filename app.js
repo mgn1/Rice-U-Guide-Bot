@@ -15,6 +15,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
+var userState = {"john": {
+    stateName:"menu",
+    clarify:"false"
+}};
+
 //var userList = { users: [{id:"john", state:"Directions"}, {id:"jane", state:"Directions"}]};
 
 /*
@@ -215,10 +220,6 @@ function receivedDeliveryConfirmation(event) {
     console.log("All message before %d were delivered.", watermark);
 }
 
-var userState = {"john": {
-    name:"menu",
-    clarify:"false"
-}};
 /*
  * Get the state of the given user
  */
@@ -228,7 +229,7 @@ function getUserState(id) {
 
 function makeUser(id) {
     userState[id] = {
-        name:"menu",
+        stateName:"menu",
         clarify:"false"
     }
 }
@@ -237,7 +238,7 @@ function makeUser(id) {
  * Set the state of the given user
  */
 function setUserState(id, newState) {
-    userState[id].name = newState;
+    userState[id].stateName = newState;
 }
 
 function setUserDirectClarify(id, newClarify) {
@@ -268,7 +269,7 @@ function receivedMessage(event) {
     if (getUserState(senderID) === undefined) {
         makeUser(senderID);
 
-        console.log("undefined found. new state is " + getUserState(senderID).name);
+        console.log("undefined found. new state is " + getUserState(senderID).stateName);
     }
 
   console.log("Received message for user %d and page %d at %d with message:", 
@@ -288,17 +289,21 @@ function receivedMessage(event) {
   if (quickReply) {
       var quickReplyPayload = quickReply.payload;
       if (getUserState(senderID).clarify) {
-        // TODO
-      } else {
+          setUserDirectClarify(senderID, false);
+          sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
+              " state: " + getUserState(senderID).stateName);
+          setUserState(senderID, "menu");
+      }
+       else {
           setUserState(senderID, quickReplyPayload);
           sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
-              " state: " + getUserState(senderID).name);
+              " state: " + getUserState(senderID).stateName);
       }
     return;
   }
 
   else if (messageText) {
-      var state = getUserState(senderID).name;
+      var state = getUserState(senderID).stateName;
       switch(state) {
           case "menu":
               sendMenu(senderID);
@@ -443,8 +448,6 @@ function sendDirections(recipientId, messageData) {
         ]
     };
 
-    conflict["Brown Hall"]
-
     var locs = [
         ["Abercrombie Engineering Laboratory", "abercrombie\\s(engineering\\slaboratory)*"],
         ["Allen Business Center", "allen\\s(business\\s)*center"],
@@ -479,6 +482,7 @@ function sendDirections(recipientId, messageData) {
     // Check if it is a conflict
     if (lastLoc.substr(0,9) == "conflict:") {
         // Execute the conflictMenu
+        setUserDirectClarify(recipientId, true);
         sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)])
     }
 
@@ -487,8 +491,6 @@ function sendDirections(recipientId, messageData) {
 }
 
 function sendConflictMenu(recipientId, conflictLists) {
-
-    setUserDirectClarify(recipientId, true);
 
     var messageData = {
         recipient: {
