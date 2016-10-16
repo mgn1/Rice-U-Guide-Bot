@@ -307,11 +307,12 @@ function receivedMessage(event) {
                   sendTextMessage(senderID, "You are in Directions. Enter a location to go, or exit using the keyword \"exit\".");
                   break;
               case "fun facts":
-                  setUserState(senderID, "menu")
+                  setUserState(senderID, "menu");
                   sendFunFact(senderID);
                   break;
               case "explore":
-                  sendTextMessage(senderID, "You are in " + quickReplyPayload + ". Exploring stuff will go here. Exit using the keyword \"exit\".");
+                  setUserState(senderID, "menu");
+                  sendExplore(senderID);
                   break;
               default:
                   sendTextMessage(senderID, "wut did you do. state is " + state);
@@ -326,6 +327,15 @@ function receivedMessage(event) {
           || messageText === "exit" || messageText === "quit" || messageText === "escape") {
           setUserState(senderID, "menu");
           sendMenu(senderID);
+      } else if (messageText === "directions" || messageText === "directions") {
+          setUserState(senderID, "directions");
+          sendTextMessage(senderID, "You are in Directions. Enter a location to go, or exit using the keyword \"exit\".");
+      } else if (messageText === "explore") {
+          setUserState(senderID, "menu");
+          sendExplore(senderID);
+      } else if (messageText === "fun fact" || messageText === "fun facts") {
+          setUserState(senderID, "menu");
+          sendFunFact(senderID);
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
@@ -336,10 +346,12 @@ function receivedMessage(event) {
               sendDirections(senderID, messageText);
               break;
           case "fun facts":
+              setUserState(senderID, "menu");
               sendFunFact(senderID);
               break;
           case "explore":
-              sendTextMessage(senderID, "you are in explore");
+              setUserState(senderID, "menu");
+              sendExplore(senderID);
               break;
           default:
               sendTextMessage(senderID, "wut did you do. state is " + state);
@@ -451,7 +463,6 @@ function sendGifMessage(recipientId) {
 /*
  * Sends a Rice fun fact
  */
-
 function sendFunFact(recipientId) {
   var facts = ["\"Strigiformes\" is the taxonomical order of all owls!", 
   "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
@@ -559,6 +570,15 @@ function sendConflictMenu(recipientId, conflictLists) {
     callSendAPI(messageData);
 }
 
+/*
+ * Sends the user to a location to explore
+ */
+function sendExplore(recipientId) {
+    var locations = ["The Frog Wall is a wall that makes frog noises if you do a thing? If you want to go to it, here's a maps link.",
+        "Rice has a piece of the Berlin wall on campus. If you want to go to it, here's a maps link."];
+
+    sendTextMessage(recipientId, locations[Math.floor(Math.random() * locations.length)]);
+}
 
 /*
  * Send a text message using the Send API.
