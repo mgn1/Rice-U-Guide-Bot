@@ -573,8 +573,7 @@ function sendDirections(recipientId, messageData) {
 ["Wiess President's House", "(wiess president's house)|(wph)", "https://goo.gl/maps/wfZqjZVPChs"], 
 ["Will Rice College", "(will rice college)|(wrc)", "https://goo.gl/maps/AypESjPaey22"], 
 ["Harry C Weiss College", "(harry c weiss college)|(wsc)", "https://goo.gl/maps/97Rx2gFEEbP2"], 
-["West Servery", "(west servery)|(wsv)", "https://goo.gl/maps/6kUsgQyi3h12"], 
-];
+["West Servery", "(west servery)|(wsv)", "https://goo.gl/maps/6kUsgQyi3h12"]];
 
     /*
      Regex expressions for all the various places on campus.
