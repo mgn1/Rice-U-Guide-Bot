@@ -266,7 +266,7 @@ function receivedMessage(event) {
   if (quickReply) {
     var quickReplyPayload = quickReply.payload;
     updateUserState(senderID, quickReplyPayload);
-    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. states are: " + userList.toString());
+    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. states are: " + userList[0].toString()+userList[1].toString()+userList[2]);
 
     return;
   }
@@ -279,7 +279,7 @@ function receivedMessage(event) {
               return;
           }
       }
-      if (userState === "directions") {
+      if (userState.valueOf() === "directions".valueOf()) {
           sendDirections(recipientID, messageText);
       } else {
           sendMenu(senderID);
