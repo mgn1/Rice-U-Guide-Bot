@@ -231,7 +231,7 @@ function makeUser(id) {
     userState[id] = {
         stateName:"menu",
         clarify:"false"
-    }
+    };
 }
 
 /*
@@ -292,7 +292,7 @@ function receivedMessage(event) {
   if (quickReply) {
       var quickReplyPayload = quickReply.payload;
       // If there was a conflict in the directions, a clarification was requested.
-      if (getUser(senderID).clarify == true) {
+      if (getUser(senderID).clarify === true) {
           console.log("Clarification requested. The user's clarification is set to " + getUser(senderID).clarify);
           setUserDirectClarify(senderID, false);
           // In future updates, this text message would be replaced with a call to the URL-sending code.
@@ -307,14 +307,15 @@ function receivedMessage(event) {
                   sendTextMessage(senderID, "You are in Directions. Enter a location to go, or exit using the keyword \"exit\".");
                   break;
               case "fun facts":
-                  setUserState(senderID, "menu")
+                  setUserState(senderID, "menu");
                   sendFunFact(senderID);
                   break;
               case "explore":
-                  sendTextMessage(senderID, "You are in " + quickReplyPayload + ". Exploring stuff will go here. Exit using the keyword \"exit\".");
+                  setUserState(senderID, "menu");
+                  sendExplore(senderID);
                   break;
               default:
-                  sendTextMessage(senderID, "wut did you do. state is " + state);
+                  sendTextMessage(senderID, "wut did you do. state is " + quickReplyPayload);
           }
       }
     return;
@@ -322,10 +323,18 @@ function receivedMessage(event) {
 
   else if (messageText) {
       messageText = messageText.toLowerCase();
-      if (messageText === "menu" || messageText === "go back" || messageText === "back"
-          || messageText === "exit" || messageText === "quit" || messageText === "escape") {
+      if (messageText === "menu" || messageText === "go back" || messageText === "back" || messageText === "exit" || messageText === "quit" || messageText === "escape") {
           setUserState(senderID, "menu");
           sendMenu(senderID);
+      } else if (messageText === "directions" || messageText === "direction") {
+          setUserState(senderID, "directions");
+          sendTextMessage(senderID, "You are in Directions. Enter a location to go, or exit using the keyword \"exit\".");
+      } else if (messageText === "explore") {
+          setUserState(senderID, "menu");
+          sendExplore(senderID);
+      } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
+          setUserState(senderID, "menu");
+          sendFunFact(senderID);
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
@@ -336,10 +345,12 @@ function receivedMessage(event) {
               sendDirections(senderID, messageText);
               break;
           case "fun facts":
+              setUserState(senderID, "menu");
               sendFunFact(senderID);
               break;
           case "explore":
-              sendTextMessage(senderID, "you are in explore");
+              setUserState(senderID, "menu");
+              sendExplore(senderID);
               break;
           default:
               sendTextMessage(senderID, "wut did you do. state is " + state);
@@ -451,7 +462,6 @@ function sendGifMessage(recipientId) {
 /*
  * Sends a Rice fun fact
  */
-
 function sendFunFact(recipientId) {
   var facts = ["\"Strigiformes\" is the taxonomical order of all owls!", 
   "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
@@ -513,12 +523,12 @@ function sendDirections(recipientId, messageData) {
     var matches = [];
     locs.forEach(function (location) {
         var reg = new RegExp(location[1]);
-        if (reg.test(messageData) == true) {
+        if (reg.test(messageData) === true) {
             matches.push(location[0]);
         }
-    })
+    });
 
-    var lastLoc = matches.length == 0 ? "Location not found." : matches[matches.length-1];
+    var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
 
     console.log("Finished the matching: " + lastLoc);
 
@@ -527,7 +537,7 @@ function sendDirections(recipientId, messageData) {
         // Execute the conflictMenu
         setUserDirectClarify(recipientId, true);
         console.log("clarification is " + getUser(recipientId).clarify);
-        sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)])
+        sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)]);
     } else {
         // Return the highest result, and an error otherwise.
         sendTextMessage(recipientId, lastLoc);
@@ -550,7 +560,7 @@ function sendConflictMenu(recipientId, conflictLists) {
                     "content_type":"text",
                     "title":option.substr(0, 20),
                     "payload":option
-                }
+                };
             })
 
         }
@@ -559,6 +569,15 @@ function sendConflictMenu(recipientId, conflictLists) {
     callSendAPI(messageData);
 }
 
+/*
+ * Sends the user to a location to explore
+ */
+function sendExplore(recipientId) {
+    var locations = ["The Frog Wall is a wall that makes frog noises if you do a thing? If you want to go to it, here's a maps link.",
+        "Rice has a piece of the Berlin wall on campus. If you want to go to it, here's a maps link."];
+
+    sendTextMessage(recipientId, locations[Math.floor(Math.random() * locations.length)]);
+}
 
 /*
  * Send a text message using the Send API.
