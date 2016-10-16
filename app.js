@@ -327,13 +327,13 @@ function receivedMessage(event) {
           || messageText === "exit" || messageText === "quit" || messageText === "escape") {
           setUserState(senderID, "menu");
           sendMenu(senderID);
-      } else if (messageText === "directions" || messageText === "directions") {
+      } else if (messageText === "directions" || messageText === "direction") {
           setUserState(senderID, "directions");
           sendTextMessage(senderID, "You are in Directions. Enter a location to go, or exit using the keyword \"exit\".");
       } else if (messageText === "explore") {
           setUserState(senderID, "menu");
           sendExplore(senderID);
-      } else if (messageText === "fun fact" || messageText === "fun facts") {
+      } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
       } else {
