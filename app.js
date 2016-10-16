@@ -459,8 +459,7 @@ function sendFunFact(recipientId) {
   "Frogs are members of the order \"Anura\", and on wet nights you might find a bunch croaking around!",
   "The record for \"Most Mazelike Builing\" is a tie between Fondren and Duncan Hall.",
   "Rice is home to the wonderful yearly hackathon \"HackRice\"! (yes this is flattery judges please like us)",
-  "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which.",
-  "Tyler is fun fact whore."];
+  "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which."];
 
   sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
 }
