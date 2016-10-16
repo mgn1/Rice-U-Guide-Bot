@@ -410,24 +410,85 @@ function sendFunFact(recipientId) {
  * Sends directions
  */
 function sendDirections(recipientId, messageData) {
+
+    var conflict = {
+        "Anderson" : [
+            "M.D. Anderson Biological Laboratories",
+            "Anderson-Clarke Center",
+            "M.D. Anderson Hall"
+        ],
+        "Brown Hall" : [
+            "Alice Pratt Brown Hall",
+            "George R. Brown Hall",
+            "Herman Brown Hall"
+        ]
+    };
+
+    conflict["Brown Hall"]
+
     var locs = [
-        ["Brown College", "brown\\scollege"],
-        ["Brown College Masters House", "brown(\\scollege)*(\\smaster)+.*(house)*"]
-    ]
+        ["Abercrombie Engineering Laboratory", "abercrombie\\s(engineering\\slaboratory)*"],
+        ["Allen Business Center", "allen\\s(business\\s)*center"],
+        ["conflict:Anderson", "anderson"],
+        ["M.D. Anderson Biological Laboratories", "(m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*"],
+        ["Anderson-Clarke Center", "anderson((-|\\s)+clarke)*\\scenter"],
+        ["M.D. Anderson Hall", "(m\\.*d\\.*\\s)*anderson\\shall"],
+        ["Baker College", "baker(\\scollege)*"],
+        ["Baker College Masters House", "baker(\\scollege)*(\\smaster)+.*(house)*"],
+        ["James A. Baker Hall", "(james\\s(a\\.*\\s)*)*baker\\shall"],
+        ["Brown College", "brown(\\scollege)*"],
+        ["Brown College Masters House", "brown(\\scollege)*(\\smaster)+.*(house)*"],
+        ["conflict:Brown Hall", "brown\\shall"],
+        ["Alice Pratt Brown Hall", "(((alice\\s)*(pratt\\s)+)|((alice\\s)+(pratt\\s)*))brown\\shall"],
+        ["George R. Brown Hall", "(((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall"],
+        ["Herman Brown Hall", "herman\\sbrown\\shall"]
+    ];
 
     // Search for regexes
     var matches = [];
     locs.forEach(function (location) {
-        var reg = new RegExp(location[1]);
+        var reg = new RegExp(location[1].toLowerCase());
         if (reg.test(messageData) == true) {
             matches.push(location[0]);
         }
     })
 
-    console.log("Finished the matching");
+    var lastLoc = matches.length == 0 ? "Location not found." : matches[matches.length-1];
+
+    console.log("Finished the matching: " + lastLoc);
+
+    // Check if it is a conflict
+    if (lastLoc.substr(0,9) == "conflict:") {
+        // Execute the conflictMenu
+        sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)])
+    }
+
     // Return the highest result, and an error otherwise.
-    sendTextMessage(recipientId, matches.length == 0 ? "Location not found." : matches[matches.length-1]);
+    sendTextMessage(recipientId, lastLoc);
 }
+
+function sendConflictMenu(recipientId, conflictLists) {
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: "Did you mean:",
+            
+            quick_replies: conflictLists.map(function (_, option) {
+                return {
+                    "content_type":"text",
+                    "title":option,
+                    "payload":"DirectionConflict"
+                }
+            })
+
+        }
+    };
+
+    callSendAPI(messageData);
+}
+
 
 /*
  * Send a text message using the Send API.
