@@ -658,7 +658,7 @@ function sendDirections(recipientId, messageData) {
         // Execute the conflictMenu
         setUserDirectClarify(recipientId, true);
         console.log("clarification is " + getUser(recipientId).clarify);
-        sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)]);
+        sendConflictMenu(recipientId, conflict[lastLoc[0].substr(9, lastLoc[0].length)]);
     } else {
         sendTextMessage(recipientId, lastLoc[0] +" is located at " + lastLoc[1]);
     }
