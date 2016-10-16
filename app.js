@@ -506,7 +506,7 @@ function sendDirections(recipientId, messageData) {
 ["Mechanical Engineering Bldg", "(mechanical engineering bldg)|(meb)", "https://goo.gl/maps/W68jhRG9Zn42"], 
 ["Media Center", "(media center)|(med)", "https://goo.gl/maps/bd97WVyMQpo"], 
 ["Mechanical Laboratory", "(mechanical laboratory)|(mel)", "https://goo.gl/maps/XCwQtshnjgs"], 
-["Martel College", "(martel college)|(mlc)|(Martel)", "https://goo.gl/maps/49K7eNMqhBF2"],
+["Martel College", "(martel college)|(mlc)|(martel)", "https://goo.gl/maps/49K7eNMqhBF2"],
 ["S G Mudd Computer Science Lab", "(s g mudd computer science lab)|(mud)", "https://goo.gl/maps/Qm9bLsEgUv52"], 
 ["North Servery", "(north servery)|(nsv)|(north)", "https://goo.gl/maps/5agW4LkomU22"],
 ["Oshman Engineer Design Kichen", "(oshman engineer design kichen)|(oed)", "https://goo.gl/maps/D93h8MtvXey"], 
@@ -518,8 +518,8 @@ function sendDirections(recipientId, messageData) {
 ["Rice Memorial Center", "(rice memorial center)|(rmc)", "https://goo.gl/maps/EuipxLCTrdp"], 
 ["Rice Village Apartments", "(rice village apartments)|(rva)", "https://goo.gl/maps/i5Md9yZNEPn"], 
 ["Ryon Engineering Laboratory", "(ryon engineering laboratory)|(ryn)", "https://goo.gl/maps/oQD8unXVkJo"], 
-["Rayzor Hall", "(rayzor hall)|(rzr)", "https://goo.gl/maps/DCvjNkpCE872"], 
-["Sewall Hall", "(sewall hall)|(sew)", "https://goo.gl/maps/zaHsCqqwe6p"], 
+["Rayzor Hall", "(rayzor hall)|(rzr)|(rayzor)", "https://goo.gl/maps/DCvjNkpCE872"],
+["Sewall Hall", "(sewall hall)|(sew)|(sewall)", "https://goo.gl/maps/zaHsCqqwe6p"],
 ["South Plant", "(south plant)|(spl)", "https://goo.gl/maps/dYqLh2DdN7J2"], 
 ["Sid Richardson College", "(sid richardson college)|(src)|(sid)|(sid rich)", "https://goo.gl/maps/YP5bYXohTCP2"],
 ["Space Science and Tech Bldg", "(space science and tech bldg)|(sst)", "https://goo.gl/maps/SJWfraBFJV42"], 
@@ -528,7 +528,7 @@ function sendDirections(recipientId, messageData) {
 ["To Be Announced", "(to be announced)|(tba)", "SPECIAL CASE - EXPLAIN"], 
 ["Tudor Fieldhouse", "(tudor fieldhouse)|(tud)|(tudor)", "https://goo.gl/maps/JfsuZKArcHr"],
 ["Wiess President's House", "(wiess president's house)|(wph)", "https://goo.gl/maps/wfZqjZVPChs"], 
-["Will Rice College", "(will rice college)|(wrc)", "https://goo.gl/maps/AypESjPaey22"], 
+["Will Rice College", "(will rice college)|(wrc)|(will rice)", "https://goo.gl/maps/AypESjPaey22"],
 ["Harry C Weiss College", "(harry c weiss college)|(wsc)|(wiess)|(weiss)", "https://goo.gl/maps/97Rx2gFEEbP2"],
 ["West Servery", "(west servery)|(wsv)|(west)", "https://goo.gl/maps/6kUsgQyi3h12"]];
 
