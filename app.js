@@ -574,9 +574,23 @@ function sendConflictMenu(recipientId, conflictLists) {
  */
 function sendExplore(recipientId) {
     var locations = ["The Frog Wall is a wall that makes frog noises if you do a thing? If you want to go to it, here's a maps link.",
-        "Rice has a piece of the Berlin wall on campus. If you want to go to it, here's a maps link."];
+        "Rice has a piece of the historic Berlin wall on campus that divided Germany from 1961 to 1989.",
+        "Duncan Hall, Rice's Computational Engineering Building, has an incredible ceiling inspired by many world cultures.",
+        "Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it."];
 
-    var messageData = {
+    var images = ["http://content-img.newsinc.com/jpg/374/29570937/24703533.jpg?t=1439989620",
+        "http://mw2.google.com/mw-panoramio/photos/medium/66655372.jpg",
+        "https://www.cs.rice.edu/~keith/DuncanHall/Photos/ceiling.jpg",
+        "http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png"];
+
+    var links = ["https://goo.gl/maps/SpC9zE29evM2",
+        "https://goo.gl/maps/3pzPxMp9yYC2",
+        "https://goo.gl/maps/M1VsyKEDrwq",
+        "https://goo.gl/maps/hrhCZW94hWt"];
+
+    var rand = Math.floor(Math.random() * locations.length);
+
+    var imageMessage = {
         recipient: {
             id: recipientId
         },
@@ -584,13 +598,14 @@ function sendExplore(recipientId) {
             attachment: {
                 type: "image",
                 payload: {
-                    url: "https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg"
+                    url: images[rand]
                 }
             }
         }
     };
-    callSendAPI(messageData);
-    sendTextMessage(recipientId, locations[Math.floor(Math.random() * locations.length)]);
+
+    callSendAPI(imageMessage);
+    sendTextMessage(recipientId, locations[rand] + " Here's a Google Maps link: " + links[rand]);
 }
 
 /*
