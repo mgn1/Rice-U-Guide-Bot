@@ -275,11 +275,11 @@ function receivedMessage(event) {
       var userState;
       for (var i=0; i<userList.length; i++) {
           if (userList[i].id === id) {
-              userState = userList[i].state.toString();
+              userState = userList[i].state.toString().toLowerCase();
               return;
           }
       }
-      if (userState.toLowerCase() === "directions") {
+      if (userState === "directions") {
           sendDirections(recipientID, messageText);
       } else {
           sendMenu(senderID);
