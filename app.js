@@ -559,7 +559,7 @@ function sendDirections(recipientId, messageData) {
 ["Space Science and Tech Bldg", "(space science and tech bldg)|(sst)", "https://goo.gl/maps/SJWfraBFJV42"], 
 ["South Servery", "(south servery)|(ssv)|(south)", "https://goo.gl/maps/BGGmY981uMx"],
 ["Rice Stadium", "(rice stadium)|(sta)", "https://goo.gl/maps/U2DX4dsA22n/"], 
-["To Be Announced", "(to be announced)|(tba)", "SPECIAL CASE - EXPLAIN"], 
+["To Be Announced", "(to be announced)|(tba)", "a to-be-announced location."], 
 ["Tudor Fieldhouse", "(tudor fieldhouse)|(tud)|(tudor)", "https://goo.gl/maps/JfsuZKArcHr"],
 ["Wiess President's House", "(wiess president's house)|(wph)", "https://goo.gl/maps/wfZqjZVPChs"], 
 ["Will Rice College", "(will rice college)|(wrc)|(will rice)", "https://goo.gl/maps/AypESjPaey22"],
