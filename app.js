@@ -279,7 +279,7 @@ function receivedMessage(event) {
   }
 
   else if (messageText) {
-      var state = userState.sender;
+      var state = getUserState(senderID);
       switch(state) {
           case "menu":
               sendMenu(senderID);
