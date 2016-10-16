@@ -444,7 +444,9 @@ function sendFunFact(recipientId) {
   "Frogs are members of the order \"Anura\", and after Houston rains, you might find a bunch croaking around!",
   "The record for \"Most Mazelike Builing\" is a tie between Fondren and Duncan Hall.",
   "Rice is home to the wonderful yearly hackathon \"HackRice\"! (yes this is flattery judges please like us)",
-  "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science)."];
+  "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science).",
+  "Baker 13 is (sadly) not a myth.",
+  "Most of the developers hadn't ever been to McNair Hall before today! It's pretty far away."];
 
   sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
     setTimeout(function() {
