@@ -343,22 +343,24 @@ function receivedMessage(event) {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
       } else if (messageText === "upupdowndownleftrightleftrightbastart") {
-        setUserState(senderID, "menu");
-        var omg = {
-        recipient: {
-            id: recipientId
-        },
-        message: {
-            attachment: {
-                type: "image",
-                payload: {
-                    url: "https://media.giphy.com/media/SZSzarg4qCjpS/giphy.gif";
+          setUserState(senderID, "menu");
+          var omg = {
+          recipient: {
+              id: recipientId
+          },
+          message: {
+              attachment: {
+                  type: "image",
+                  payload: {
+                      url: "https://media.giphy.com/media/SZSzarg4qCjpS/giphy.gif";
+                  }
                 }
-              }
-           }
-         };
-
-        callSendAPI(omg);
+             }
+           };
+          callSendAPI(omg);
+          setTimeout(function() {
+          sendMenu(recipientId);
+          }, 2000);
       }
 
    } else {
