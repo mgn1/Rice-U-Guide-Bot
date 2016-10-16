@@ -292,8 +292,8 @@ function receivedMessage(event) {
   if (quickReply) {
       var quickReplyPayload = quickReply.payload;
       // If there was a conflict in the directions, a clarification was requested.
-      if (getUser(senderID).clarify) {
-          console.log("Clarification requested");
+      if (getUser(senderID).clarify == true) {
+          console.log("Clarification requested. The user's clarification is set to " + getUser(senderID).clarify);
           setUserDirectClarify(senderID, false);
           // In future updates, this text message would be replaced with a call to the URL-sending code.
           sendTextMessage(senderID, quickReplyPayload);
