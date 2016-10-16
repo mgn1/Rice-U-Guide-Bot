@@ -716,7 +716,14 @@ function sendExplore(recipientId) {
  */
 function sendBusiness(recipientId, messageData) {
     var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.*coffee.*)|(.*cafe.*)", "https://goo.gl/maps/zaHsCqqwe6p", "hours"],
-        ["The Hoot is Rice's late night food store", "(.late.)|(.hoot.)", "https://goo.gl/maps/zaHsCqqwe6p", "hoot hours"]];
+        ["The Hoot is Rice's late night food store", "(.*late.*)|(.*hoot.*)", "https://goo.gl/maps/zaHsCqqwe6p", "hoot hours"],
+        ["North", ".*north.*", "address", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+        ["West", ".*west.*", "address", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+        ["South", ".*south.*", "address", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+        ["East Servery doesn't exist. Try North, South, or West?", ".*east.*", "Not here", "Never"],
+        ["Baker", ".*baker.*", "address", "weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Baker Kitchen is closed on weekends."],
+        ["Seibel", "(.*seibel.*)|(.*siebel.*)", "address", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
+        ["Sid Rich", ".*sid.*", "address", "open on weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Sid Kitchen is closed on weekends"]];
 
     var matches = [];
     businesses.forEach(function (location) {
