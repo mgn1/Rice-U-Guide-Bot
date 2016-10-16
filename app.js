@@ -481,6 +481,10 @@ function sendDirections(recipientId, messageData) {
             "Alice Pratt Brown Hall",
             "George R. Brown Hall",
             "Herman Brown Hall"
+        ],
+        "Pavilion" : [
+            "Booth Centennial Pavilion",
+            "Brochstein Pavilion"
         ]
     };
 
@@ -494,6 +498,11 @@ function sendDirections(recipientId, messageData) {
         ["Baker College", "baker(\\scollege)*"],
         ["Baker College Masters House", "baker(\\scollege)*(\\smaster)+.*(house)*"],
         ["James A. Baker Hall", "(james\\s(a\\.*\\s)*)*baker\\shall"],
+        ["BioScience Research Collaborative", "bioscience(\\sresearch)*(\\scollaborative)*"],
+        ["conflict: Pavilion", "pavilion"],
+        ["Booth Centennial Pavilion", "(booth\\s)*centennial\\spavilion"],
+        ["Brochstein Pavilion", "brochstein(\\spavilion)*"],
+        ["Brockman Hall for Physics", "brockman(\\shall)*(\\sfor\\sphysics)*"]
         ["Brown College", "brown(\\scollege)*"],
         ["Brown College Masters House", "brown(\\scollege)*(\\smaster)+.*(house)*"],
         ["conflict:Brown Hall", "brown\\shall"],
