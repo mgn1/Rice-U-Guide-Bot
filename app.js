@@ -464,35 +464,42 @@ function sendDirections(recipientId, messageData) {
      */
     var conflict = {
         "Anderson" : [
-            "M.D. Anderson Biological Laboratories",
-            "Anderson-Clarke Center",
-            "M.D. Anderson Hall"
+            ["M.D. Anderson Biological Laboratories", "https://goo.gl/maps/GUr5RffcSju"],
+            ["Anderson-Clarke Center", "https://goo.gl/maps/4anc5qKPDus"],
+            ["M.D. Anderson Hall" , "https://goo.gl/maps/KYpf6JNxeSr"],
         ],
         "Brown Hall" : [
-            "Alice Pratt Brown Hall",
-            "George R. Brown Hall",
-            "Herman Brown Hall"
+            ["Alice Pratt Brown Hall", "https://goo.gl/maps/toGFGJqMhin"],
+            ["George R. Brown Hall", "https://goo.gl/maps/oMB2ztggJmk"],
+            ["Herman Brown Hall", "https://goo.gl/maps/xc1Edcf4rsy"]
         ],
         "Jones" : [
-            "Jesse Jones Graduate School of Business",
-            "Jones College",
-            "Jones College Masters House"
+            ["Jesse Jones Graduate School of Business", "https://goo.gl/maps/X51ckCbXZx12"],
+            ["Jones College", "https://goo.gl/maps/X51ckCbXZx12"],
+            ["Jones College Masters House", "https://goo.gl/maps/X51ckCbXZx12"]
         ],
         "Pavilion" : [
-            "Booth Centennial Pavilion",
-            "Brochstein Pavilion"
+            ["Booth Centennial Pavilion", "https://goo.gl/maps/9wZWZCeSAsJ2"],
+            ["Brochstein Pavilion", "https://goo.gl/maps/9wZWZCeSAsJ2"]
         ]
     };
 
-    var locs = [["M D Anderson Biological Lab", "(m d anderson biological lab)|(abl)|((m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*)", "https://goo.gl/maps/GUr5RffcSju"],
+    var locs = [
+["conflict:Anderson", "anderson"],
+["M.D. Anderson Biological Laboratories", "(m d anderson biological lab)|(abl)|((m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*)", "https://goo.gl/maps/GUr5RffcSju"],
 ["Anderson-Clarke Center", "(anderson-clarke center)|(acc)|(anderson((-|\\s)+clarke)*\\scenter)", "https://goo.gl/maps/4anc5qKPDus"],
+["M.D. Anderson Hall", "(m d anderson hall)|(anh)|((m\\.*d\\.*\\s)*anderson\\shall)", "https://goo.gl/maps/KYpf6JNxeSr"],
 ["Abercromie Engineering Lab", "(abercromie engineering lab)|(ael)|(abercrombie\\s(engineering\\slaboratory)*)", "https://goo.gl/maps/wPBxz7HHnxF2"],
 ["Allen Center", "(allen center)|(aln)|(allen\\s(business\\s)*center)", "https://goo.gl/maps/SGGCSQvB8eJ2"],
-["M D Anderson Hall", "(m d anderson hall)|(anh)|((m\\.*d\\.*\\s)*anderson\\shall)", "https://goo.gl/maps/KYpf6JNxeSr"],
+["conflict:Brown Hall", "brown\\shall"],
 ["Alice Pratt Brown Hall", "(alice pratt brown hall)|(apb)|((((alice\\s)*(pratt\\s)+)|((alice\\s)+(pratt\\s)*))brown\\shall)", "https://goo.gl/maps/toGFGJqMhin"],
+["George R. Brown Hall", "(george r brown hall)|(grb)|((((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall)", "https://goo.gl/maps/oMB2ztggJmk"],
+["Herman Brown Hall for Math Sci", "(herman brown hall for math sci)|(hbh)|(herman\\sbrown\\shall)", "https://goo.gl/maps/xc1Edcf4rsy"],
 ["Baker College", "(baker college)|(bkc)|(baker(\\scollege)*)", "https://goo.gl/maps/W5NJNnAFW2q"],
 ["James Baker Hall", "(james baker hall)|(bkh)|((james\\s(a\\.*\\s)*)*baker\\shall)", "https://goo.gl/maps/s5c2Ww5cTsS2"],
 ["Margaret Root Brown College", "(margaret root brown college)|(bnc)|(brown(\\scollege)*)", "https://goo.gl/maps/wvXbrkh3vgp"],
+["conflict: Pavilion", "pavilion"],
+["Booth Centennial Pavilion", "(booth\\s)*centennial\\spavilion", "https://goo.gl/maps/9wZWZCeSAsJ2"],
 ["Brochstein Pavilion", "(brochstein pavilion)|(bpv)|(brochstein(\\spavilion)*)", "https://goo.gl/maps/9wZWZCeSAsJ2"],
 ["BioScience Research Collab", "(bioscience research collab)|(brc)|(bioscience(\\sresearch)*(\\scollaborative)*)", "https://goo.gl/maps/54Md9RPF5L42"],
 ["Brockman Hall for Physics", "(brockman hall for physics)|(brk)|(brockman(\\shall)*(\\sfor\\sphysics)*)", "https://goo.gl/maps/njYn4m7rakt"],
@@ -504,17 +511,18 @@ function sendDirections(recipientId, messageData) {
 ["Fondren Library", "(fondren library)|(fon)|(((fondren\\s)*(library)+)|((fondren)+\\s*(library)*))", "https://goo.gl/maps/rjZhEt4DPmH2"],
 ["Greenbriar Building", "(greenbriar building)|(gbb)|(greenbriar(\\sbuilding)*)", "https://goo.gl/maps/S4q88t38iX72"],
 ["Greenhouse", "(greenhouse)|(ghs)|(greenhouse)", "https://goo.gl/maps/cMVgGo6CC4J2"],
-["George R Brown Hall", "(george r brown hall)|(grb)|((((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall)", "https://goo.gl/maps/oMB2ztggJmk"],
 ["Gibbs Rec and Wellness Center", "(gibbs rec and wellness center)|(grw)|(((gibbs\\s)*rec(reation)*\\s(and\\swellness\\s)*center)|(gym))", "https://goo.gl/maps/WXVQGEqEwJF2"],
 ["Hamman Hall", "(hamman hall)|(ham)|(hamman\\shall)", "https://goo.gl/maps/VqmcP2hFpDn"],
-["Herman Brown Hall for Math Sci", "(herman brown hall for math sci)|(hbh)", "https://goo.gl/maps/xc1Edcf4rsy"], 
 ["Holloway Field and Ley Track", "(holloway field and ley track)|(hfd)|(holloway(\\sfield)*)", "https://goo.gl/maps/6fdEGhsb8PA2"],
 ["Harry C Hanszen College", "(harry c hanszen college)|(hnz)|(hanszen(\\scollege)*)", "https://goo.gl/maps/Ko15SBHpRfP2"],
 ["Robert R Herring Hall", "(robert r herring hall)|(hrg)|((robert\\sr\.*\\s)*herring\\shall)", "https://goo.gl/maps/7vsFvrLtkco"],
 ["Herzstein Hall", "(herzstein hall)|(hrz)", "https://goo.gl/maps/NgTG6Qoou722"], 
 ["Huff House", "(huff house)|(huf)", "https://goo.gl/maps/FM8Q9CVtkuy"], 
-["Humanities Building", "(humanities building)|(hum)", "https://goo.gl/maps/XKesMenuPar"], 
+["Humanities Building", "(humanities building)|(hum)", "https://goo.gl/maps/XKesMenuPar"],
+["conflict:Jones", "jones"],
+["Jesse Jones Graduate School of Business", "(jesse\\s)*jones\\s(graduate\\s)*school(\\sof)*(\\sbusiness)+", "https://goo.gl/maps/X51ckCbXZx12"],
 ["Jones College", "(jones college)|(joc)|(jones)", "https://goo.gl/maps/X51ckCbXZx12"],
+["Jones College Masters House", "jones(\\scollege)*(\\smaster)+.*(house)*", "https://goo.gl/maps/X51ckCbXZx12"],
 ["Howard Keck Hall", "(howard keck hall)|(kck)|(kec\\shall)", "https://goo.gl/maps/LhoKRLHxLdD2"],
 ["Keith-Weiss Geological Lab", "(keith-weiss geological lab)|(kwg)|(keith-*\\s*wiess\\s*(geological\\slaborator(ies)|y)*)", "https://goo.gl/maps/Gd53FZmieNk"],
 ["Ley Student Center", "(ley student center)|(ley)", "https://goo.gl/maps/RjSgNEXuawr"], 
@@ -527,10 +535,10 @@ function sendDirections(recipientId, messageData) {
 ["Media Center", "(media center)|(med)", "https://goo.gl/maps/bd97WVyMQpo"], 
 ["Mechanical Laboratory", "(mechanical laboratory)|(mel)", "https://goo.gl/maps/XCwQtshnjgs"], 
 ["Martel College", "(martel college)|(mlc)|(martel)", "https://goo.gl/maps/49K7eNMqhBF2"],
-["S G Mudd Computer Science Lab", "(s g mudd computer science lab)|(mud)", "https://goo.gl/maps/Qm9bLsEgUv52"], 
+["S G Mudd Computer Science Lab", "(s g mudd computer science lab)|(mudd)", "https://goo.gl/maps/Qm9bLsEgUv52"],
 ["North Servery", "(north servery)|(nsv)|(north)", "https://goo.gl/maps/5agW4LkomU22"],
-["Oshman Engineer Design Kichen", "(oshman engineer design kichen)|(oed)", "https://goo.gl/maps/D93h8MtvXey"], 
-["Police Department", "(.*police.*)|(pol)", "https://goo.gl/maps/5kKwi9gp53S2"],
+["Oshman Engineer Design Kitchen", "(oshman engineer design kitchen)|(oedk)", "https://goo.gl/maps/D93h8MtvXey"],
+["Rice University Police Department", "(.*police.*)|(pol)|(rupd)", "https://goo.gl/maps/5kKwi9gp53S2"],
 ["Rice Children's Campus", "(rice children's campus)|(rcc)", "https://goo.gl/maps/kUGpmokVrEx"], 
 ["Reckling Park at Cameron Field", "(reckling park at cameron field)|(rck)", "https://goo.gl/maps/WsMJsD41aN82"], 
 ["Rice Graduate Apartments", "(rice graduate apartments)|(rga)", "https://goo.gl/maps/j6jAEtDUQ7T2"], 
@@ -663,8 +671,8 @@ function sendConflictMenu(recipientId, conflictLists) {
                 return {
                     "content_type":"text",
                     // Titles are limited to 20 characters.
-                    "title":option.substr(0, 20),
-                    "payload":option
+                    "title":option[0].substr(0, 20),
+                    "payload":option[0] + " is located at " + option[1]
                 };
             })
 
