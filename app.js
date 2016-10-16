@@ -231,7 +231,7 @@ function makeUser(id) {
     userState[id] = {
         stateName:"menu",
         clarify:"false"
-    }
+    };
 }
 
 /*
@@ -511,7 +511,7 @@ function sendDirections(recipientId, messageData) {
         ["conflict: Pavilion", "pavilion"],
         ["Booth Centennial Pavilion", "(booth\\s)*centennial\\spavilion"],
         ["Brochstein Pavilion", "brochstein(\\spavilion)*"],
-        ["Brockman Hall for Physics", "brockman(\\shall)*(\\sfor\\sphysics)*"]
+        ["Brockman Hall for Physics", "brockman(\\shall)*(\\sfor\\sphysics)*"],
         ["Brown College", "brown(\\scollege)*"],
         ["Brown College Masters House", "brown(\\scollege)*(\\smaster)+.*(house)*"],
         ["conflict:Brown Hall", "brown\\shall"],
@@ -527,7 +527,7 @@ function sendDirections(recipientId, messageData) {
         if (reg.test(messageData) == true) {
             matches.push(location[0]);
         }
-    })
+    });
 
     var lastLoc = matches.length == 0 ? "Location not found." : matches[matches.length-1];
 
@@ -538,7 +538,7 @@ function sendDirections(recipientId, messageData) {
         // Execute the conflictMenu
         setUserDirectClarify(recipientId, true);
         console.log("clarification is " + getUser(recipientId).clarify);
-        sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)])
+        sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)]);
     } else {
         // Return the highest result, and an error otherwise.
         sendTextMessage(recipientId, lastLoc);
@@ -561,7 +561,7 @@ function sendConflictMenu(recipientId, conflictLists) {
                     "content_type":"text",
                     "title":option.substr(0, 20),
                     "payload":option
-                }
+                };
             })
 
         }
