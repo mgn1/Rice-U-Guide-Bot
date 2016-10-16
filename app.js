@@ -225,6 +225,14 @@ var userState = {"john": {
 function getUserState(id) {
     return userState[id];
 }
+
+function makeUser(id) {
+    userState[id] = {
+        name:"menu",
+        clarify:"false"
+    }
+}
+
 /*
  * Set the state of the given user
  */
@@ -258,8 +266,7 @@ function receivedMessage(event) {
   var message = event.message;
 
     if (getUserState(senderID) === undefined) {
-        setUserState(senderID, "menu");
-        setUserDirectClarify(senderID, false);
+        makeUser(senderID);
 
         console.log("undefined found. new state is " + getUserState(senderID).name);
     }
