@@ -287,7 +287,7 @@ function receivedMessage(event) {
           case "directions":
               sendDirections(recipientID, messageText);
               break;
-          case "fun fact":
+          case "fun facts":
               sendTextMessage(senderID, "you are in fun fact");
               break;
           case "explore":
@@ -326,7 +326,7 @@ function sendMenu(recipientId) {
                 {
                     "content_type":"text",
                     "title":"Fun Facts",
-                    "payload":"fun Facts"
+                    "payload":"fun facts"
                 }
             ]
         }
