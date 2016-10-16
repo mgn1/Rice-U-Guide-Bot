@@ -342,6 +342,9 @@ function receivedMessage(event) {
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
+      } else if (messageText === "upupdowndownleftrightleftrightbastart") {
+          setUserState(senderID, "menu");
+          sendTextMessage(senderID, "Hacking into the mainframe...");
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
