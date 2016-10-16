@@ -345,6 +345,20 @@ function receivedMessage(event) {
       } else if (messageText === "upupdowndownleftrightleftrightbastart") {
           setUserState(senderID, "menu");
           sendTextMessage(senderID, "Hacking into the mainframe...");
+          var imageMessage = {
+              recipient: {
+                  id: recipientId
+              },
+              message: {
+                  attachment: {
+                      type: "image",
+                      payload: {
+                          url: "https://media.giphy.com/media/SZSzarg4qCjpS/giphy.gif"
+                      }
+                  }
+              }
+          };
+      callSendAPI(imageMessage);
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
