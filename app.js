@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
-var userList = '{ "users": [{"id":"john", "state":"Directions"}, {"id":"jane", "state":"Directions"}]}';
+var userList = { users: [{id:"john", state:"Directions"}, {id:"jane", state:"Directions"}]};
 
 /*
  * Be sure to setup your config values before running this code. You can 
