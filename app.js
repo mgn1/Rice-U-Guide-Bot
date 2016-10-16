@@ -215,7 +215,7 @@ function receivedDeliveryConfirmation(event) {
     console.log("All message before %d were delivered.", watermark);
 }
 
-var userState = {"john":"menu", "936325599804962":"menu"};
+var userState = {"john":"menu"};
 /*
  * Get the state of the given user
  */
@@ -252,6 +252,8 @@ function receivedMessage(event) {
 
     if (getUserState(senderID) === undefined) {
         setUserState(senderID, "menu");
+
+        console.log("undefined found. new state is " + getUserState(senderID));
     }
 
   console.log("Received message for user %d and page %d at %d with message:", 
