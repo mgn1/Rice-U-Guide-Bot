@@ -662,7 +662,7 @@ function sendExplore(recipientId) {
 
     var images = ["http://content-img.newsinc.com/jpg/374/29570937/24703533.jpg?t=1439989620",
         "http://mw2.google.com/mw-panoramio/photos/medium/66655372.jpg",
-        "https://www.cs.rice.edu/~keith/DuncanHall/Photos/ceiling.jpg",
+        "http://timeline.centennial.rice.edu/site_media/uploads/images/2011-03-24/Duncan_Hall_interior_copy_tif_800x700_q85.jpg",
         "http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png"];
 
     var links = ["https://goo.gl/maps/SpC9zE29evM2",
