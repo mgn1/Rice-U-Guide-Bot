@@ -276,10 +276,12 @@ function receivedMessage(event) {
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
 
+    /*
   var isEcho = message.is_echo;
   var messageId = message.mid;
   var appId = message.app_id;
   var metadata = message.metadata;
+  */
 
   // You may get a text or attachment but not both
   var messageText = message.text;
@@ -291,13 +293,13 @@ function receivedMessage(event) {
       if (getUser(senderID).clarify) {
           setUserDirectClarify(senderID, false);
           sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
-              " state: " + getUser(senderID).stateName);
+              " state: " + getUser(senderID).stateName + " clarify? " + getUser(senderID).clarify);
           setUserState(senderID, "menu");
       }
        else {
           setUserState(senderID, quickReplyPayload);
           sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
-              " state: " + getUser(senderID).stateName);
+              " state: " + getUser(senderID).stateName + " clarify? " + getUser(senderID).clarify);
       }
     return;
   }
@@ -488,14 +490,17 @@ function sendDirections(recipientId, messageData) {
     if (lastLoc.substr(0,9) == "conflict:") {
         // Execute the conflictMenu
         setUserDirectClarify(recipientId, true);
+        console.log("clarification is " + getUser(recipientId).clarify);
         sendConflictMenu(recipientId, conflict[lastLoc.substr(9, lastLoc.length)])
+    } else {
+        // Return the highest result, and an error otherwise.
+        sendTextMessage(recipientId, lastLoc);
     }
-
-    // Return the highest result, and an error otherwise.
-    sendTextMessage(recipientId, lastLoc);
 }
 
 function sendConflictMenu(recipientId, conflictLists) {
+
+    console.log("Checking conflicts for " + conflictLists.toString());
 
     var messageData = {
         recipient: {
