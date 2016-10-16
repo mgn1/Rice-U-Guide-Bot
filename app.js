@@ -285,7 +285,7 @@ function receivedMessage(event) {
               sendMenu(senderID);
               break;
           case "directions":
-              sendDirections(recipientID, messageText);
+              sendDirections(senderID, messageText);
               break;
           case "fun facts":
               sendFunFact(senderID);
