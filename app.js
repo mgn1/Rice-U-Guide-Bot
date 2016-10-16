@@ -215,14 +215,13 @@ function receivedDeliveryConfirmation(event) {
     console.log("All message before %d were delivered.", watermark);
 }
 
-var userList = {"john":"directions"};
+var userList = {"john":"directions", "936325599804962":"bla"};
 /*
  * Set the state of the each user.
- * var userList = '{ "users": [{"id":"john", "state":"Directions"}, {"id":"jane", "state":"Directions"}]}';
  */
 function updateUserState(id, newState) {
     var newID = id.toString();
-    userList.newID = newState;
+    userList[newID] = newState;
 }
 
 /*
@@ -270,7 +269,7 @@ function receivedMessage(event) {
   }
 
   else if (messageText) {
-      if (userState.sender.valueOf() === "directions".valueOf()) {
+      if (userList.sender.valueOf() === "directions".valueOf()) {
           sendDirections(recipientID, messageText);
       } else {
           sendMenu(senderID);
