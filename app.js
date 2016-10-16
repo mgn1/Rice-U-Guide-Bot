@@ -422,11 +422,11 @@ function receivedMessageRead(event) {
 function sendFunFact(recipientId) {
   var facts = ["\"Strigiformes\" is the taxonomical order of all owls!", 
   "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
-  "There is no way to justify Martel’s existence as a college.",
-  "Frogs are members of the order \"Anura\", and on wet nights you might find a bunch croaking around!",
+  "Every student insists that their residential college is the best. McMurtry is obviously superior, but that might just be my developers' bias. :)",
+  "Frogs are members of the order \"Anura\", and after Houston rains, you might find a bunch croaking around!",
   "The record for \"Most Mazelike Builing\" is a tie between Fondren and Duncan Hall.",
   "Rice is home to the wonderful yearly hackathon \"HackRice\"! (yes this is flattery judges please like us)",
-  "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which."];
+  "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science)."];
 
   sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
     setTimeout(function() {
