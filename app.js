@@ -308,12 +308,13 @@ function receivedMessage(event) {
   }
 
   else if (messageText) {
-      if (messageText === "menu" || messageText === "go back" || messageText === "back" || messageText === "exit" || messageText === "quit" || messageText === "escape") {
+      if (messageText === "menu" || messageText === "go back" || messageText === "back"
+          || messageText === "exit" || messageText === "quit" || messageText === "escape") {
           setUserState(senderID, "menu");
           sendMenu(senderID);
-      }
-      var state = getUser(senderID).stateName;
-      switch(state) {
+      } else {
+          var state = getUser(senderID).stateName;
+      switch (state) {
           case "menu":
               sendMenu(senderID);
               break;
@@ -329,6 +330,7 @@ function receivedMessage(event) {
           default:
               sendTextMessage(senderID, "wut did you do. state is " + state);
       }
+        }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
   }
@@ -478,8 +480,7 @@ function sendDirections(recipientId, messageData) {
         ["conflict:Brown Hall", "brown\\shall"],
         ["Alice Pratt Brown Hall", "(((alice\\s)*(pratt\\s)+)|((alice\\s)+(pratt\\s)*))brown\\shall"],
         ["George R. Brown Hall", "(((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall"],
-        ["Herman Brown Hall", "herman\\sbrown\\shall"],
-        ["menu", "(main\s)*menu"]
+        ["Herman Brown Hall", "herman\\sbrown\\shall"]
     ];
 
     // Search for regexes
@@ -495,13 +496,8 @@ function sendDirections(recipientId, messageData) {
 
     console.log("Finished the matching: " + lastLoc);
 
-    // Return to main menu if specified.
-    if (lastLoc.substr(0,4)) {
-        setUserState(recipientId, "menu");
-        sendMenu(recipientId);
-    }
     // Check if it is a conflict
-     else if (lastLoc.substr(0,9) == "conflict:") {
+     if (lastLoc.substr(0,9) == "conflict:") {
         // Execute the conflictMenu
         setUserDirectClarify(recipientId, true);
         console.log("clarification is " + getUser(recipientId).clarify);
