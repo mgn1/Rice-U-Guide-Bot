@@ -290,12 +290,13 @@ function receivedMessage(event) {
 
   if (quickReply) {
       var quickReplyPayload = quickReply.payload;
+      // If there was a conflict in the directions, a clarification was requested.
       if (getUser(senderID).clarify) {
           setUserDirectClarify(senderID, false);
-          sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
-              " state: " + getUser(senderID).stateName + " clarify? " + getUser(senderID).clarify);
-          setUserState(senderID, "menu");
+          // In future updates, this text message would be replaced with a call to the URL-sending code.
+          sendTextMessage(senderID, quickReplyPayload);
       }
+      // Otherwise, this is our state-changing code from the main menu.
        else {
           setUserState(senderID, quickReplyPayload);
           sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
@@ -471,7 +472,8 @@ function sendDirections(recipientId, messageData) {
         ["conflict:Brown Hall", "brown\\shall"],
         ["Alice Pratt Brown Hall", "(((alice\\s)*(pratt\\s)+)|((alice\\s)+(pratt\\s)*))brown\\shall"],
         ["George R. Brown Hall", "(((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall"],
-        ["Herman Brown Hall", "herman\\sbrown\\shall"]
+        ["Herman Brown Hall", "herman\\sbrown\\shall"],
+        ["menu", "(main\s)*menu"]
     ];
 
     // Search for regexes
@@ -487,8 +489,13 @@ function sendDirections(recipientId, messageData) {
 
     console.log("Finished the matching: " + lastLoc);
 
+    // Return to main menu if specified.
+    if (lastLoc.substr(0,4)) {
+        setUserState(recipientId, "menu");
+        sendMenu(recipientId);
+    }
     // Check if it is a conflict
-    if (lastLoc.substr(0,9) == "conflict:") {
+     else if (lastLoc.substr(0,9) == "conflict:") {
         // Execute the conflictMenu
         setUserDirectClarify(recipientId, true);
         console.log("clarification is " + getUser(recipientId).clarify);
