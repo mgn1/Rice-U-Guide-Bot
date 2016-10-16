@@ -215,13 +215,18 @@ function receivedDeliveryConfirmation(event) {
     console.log("All message before %d were delivered.", watermark);
 }
 
-var userList = {"john":"directions", "936325599804962":"bla"};
+var userState = {"john":"menu", "936325599804962":"menu"};
 /*
- * Set the state of the each user.
+ * Get the state of the given user
  */
-function updateUserState(id, newState) {
-    var newID = id.toString();
-    userList[newID] = newState;
+function getUserState(id) {
+    return userState[id];
+}
+/*
+ * Set the state of the given user
+ */
+function setUserState(id, newState) {
+    userState[id] = newState;
 }
 
 /*
@@ -245,6 +250,10 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
+    if (getUserState(senderID) === undefined) {
+        setUserState(senderID, "menu");
+    }
+
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
@@ -259,26 +268,36 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
-    sendTextMessage(senderID, senderID.type);
   if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    updateUserState(senderID, quickReplyPayload);
-    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID + " state: ");
+    setUserState(senderID, quickReplyPayload);
+    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID + " state: " + getUserState(senderID));
 
     return;
   }
 
   else if (messageText) {
-      if (userList.sender.valueOf() === "directions".valueOf()) {
-          sendDirections(recipientID, messageText);
-      } else {
-          sendMenu(senderID);
+      var state = userState.sender;
+      switch(state) {
+          case "menu":
+              sendMenu(senderID);
+              break;
+          case "directions":
+              sendDirections(recipientID, messageText);
+              break;
+          case "fun fact":
+              sendTextMessage(senderID, "you are in fun fact");
+              break;
+          case "explore":
+              sendTextMessage(senderID, "you are in explore");
+              break;
+          default:
+              sendTextMessage(senderID, "wut did you do");
       }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
   }
 }
-
 
 /*
  * Send our main menu
@@ -295,17 +314,17 @@ function sendMenu(recipientId) {
                 {
                     "content_type":"text",
                     "title":"Directions",
-                    "payload":"Directions"
+                    "payload":"directions"
                 },
                 {
                     "content_type":"text",
                     "title":"Explore",
-                    "payload":"Explore"
+                    "payload":"explore"
                 },
                 {
                     "content_type":"text",
                     "title":"Fun Facts",
-                    "payload":"Fun Facts"
+                    "payload":"fun Facts"
                 }
             ]
         }
