@@ -344,21 +344,7 @@ function receivedMessage(event) {
           sendFunFact(senderID);
       } else if (messageText === "upupdowndownleftrightleftrightbastart") {
           setUserState(senderID, "menu");
-          sendTextMessage(senderID, "Hacking into the mainframe...");
-          var imageMessage = {
-              recipient: {
-                  id: recipientId
-              },
-              message: {
-                  attachment: {
-                      type: "image",
-                      payload: {
-                          url: "https://media.giphy.com/media/SZSzarg4qCjpS/giphy.gif"
-                      }
-                  }
-              }
-          };
-      callSendAPI(imageMessage);
+          sendTextMessage(senderID, "Hacking into the mainframe...... Success!");
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
