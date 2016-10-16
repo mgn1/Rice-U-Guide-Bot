@@ -500,7 +500,7 @@ function sendDirections(recipientId, messageData) {
         ["conflict: Pavilion", "pavilion"],
         ["Booth Centennial Pavilion", "(booth\\s)*centennial\\spavilion"],
         ["Brochstein Pavilion", "brochstein(\\spavilion)*"],
-        ["Brockman Hall for Physics", "brockman(\\shall)*(\\sfor\\sphysics)*"]
+        ["Brockman Hall for Physics", "brockman(\\shall)*(\\sfor\\sphysics)*"],
         ["Brown College", "brown(\\scollege)*"],
         ["Brown College Masters House", "brown(\\scollege)*(\\smaster)+.*(house)*"],
         ["conflict:Brown Hall", "brown\\shall"],
