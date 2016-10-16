@@ -653,6 +653,20 @@ function sendExplore(recipientId) {
     var locations = ["The Frog Wall is a wall that makes frog noises if you do a thing? If you want to go to it, here's a maps link.",
         "Rice has a piece of the Berlin wall on campus. If you want to go to it, here's a maps link."];
 
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "image",
+                payload: {
+                    url: "https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg"
+                }
+            }
+        }
+    };
+    callSendAPI(messageData);
     sendTextMessage(recipientId, locations[Math.floor(Math.random() * locations.length)]);
 }
 
