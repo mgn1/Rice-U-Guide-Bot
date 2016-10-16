@@ -617,6 +617,9 @@ function sendDirections(recipientId, messageData) {
         console.log("clarification is " + getUser(recipientId).clarify);
         sendConflictMenu(recipientId, conflict[lastLoc[0].substr(9, lastLoc[0].length)]);
     } else {
+        if (lastLoc === "L") {
+            sendTextMessage(recipientId, "I don't recognize that location.");
+        }
         sendTextMessage(recipientId, lastLoc[0] +" is located at " + lastLoc[1]);
     }
 }
