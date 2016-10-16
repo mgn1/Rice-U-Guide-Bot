@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
-var userList = { users: [{id:"john", state:"Directions"}, {id:"jane", state:"Directions"}]};
+//var userList = { users: [{id:"john", state:"Directions"}, {id:"jane", state:"Directions"}]};
 
 /*
  * Be sure to setup your config values before running this code. You can 
@@ -215,17 +215,14 @@ function receivedDeliveryConfirmation(event) {
     console.log("All message before %d were delivered.", watermark);
 }
 
+var userList = {"john":"directions"};
 /*
  * Set the state of the each user.
  * var userList = '{ "users": [{"id":"john", "state":"Directions"}, {"id":"jane", "state":"Directions"}]}';
  */
 function updateUserState(id, newState) {
-    for (var i=0; i<userList.length; i++) {
-        if (userList[i].id === id) {
-            userList[i].state = newState;
-            return;
-        }
-    }
+    var newID = id.toString();
+    userList.newID = newState;
 }
 
 /*
@@ -244,6 +241,7 @@ function updateUserState(id, newState) {
  */
 function receivedMessage(event) {
   var senderID = event.sender.id;
+    var sender = senderID.toString().toLowerCase();
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
@@ -262,24 +260,17 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
 
-
+    sendTextMessage(senderID, senderID.type);
   if (quickReply) {
     var quickReplyPayload = quickReply.payload;
     updateUserState(senderID, quickReplyPayload);
-    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. states are: " + userList[0].toString()+userList[1].toString()+userList[2]);
+    sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID + " state: ");
 
     return;
   }
 
-  if (messageText) {
-      var userState;
-      for (var i=0; i<userList.length; i++) {
-          if (userList[i].id === id) {
-              userState = userList[i].state.toString().toLowerCase();
-              return;
-          }
-      }
-      if (userState.valueOf() === "directions".valueOf()) {
+  else if (messageText) {
+      if (userState.sender.valueOf() === "directions".valueOf()) {
           sendDirections(recipientID, messageText);
       } else {
           sendMenu(senderID);
@@ -300,7 +291,7 @@ function sendMenu(recipientId) {
             id: recipientId
         },
         message: {
-            text: "example menu",
+            text: "How can I help?",
             quick_replies: [
                 {
                     "content_type":"text",
