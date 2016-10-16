@@ -326,7 +326,7 @@ function receivedMessage(event) {
   }
 
   else if (messageText) {
-      messageText = messageText.toLowerCase();
+    messageText = messageText.toLowerCase();
       if (messageText === "menu" || messageText === "go back" || messageText === "back" || messageText === "exit" || messageText === "quit" || messageText === "escape") {
           setUserState(senderID, "menu");
           sendMenu(senderID);
@@ -342,7 +342,26 @@ function receivedMessage(event) {
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
-      } else {
+      } else if (messageText === "upupdowndownleftrightleftrightbastart") {
+        setUserState(senderID, "menu");
+            var imageMessage = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "image",
+                payload: {
+                    url: "https://media.giphy.com/media/SZSzarg4qCjpS/giphy.gif";
+                }
+              }
+           }
+         };
+
+        callSendAPI(imageMessage);
+      }
+
+   } else {
           var state = getUser(senderID).stateName;
       switch (state) {
           case "menu":
