@@ -257,8 +257,9 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-    if (getUserState(senderID).name === undefined) {
+    if (getUserState(senderID) === undefined) {
         setUserState(senderID, "menu");
+        setUserDirectClarify(senderID, false);
 
         console.log("undefined found. new state is " + getUserState(senderID).name);
     }
