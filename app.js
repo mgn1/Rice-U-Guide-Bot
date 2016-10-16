@@ -513,7 +513,7 @@ function sendConflictMenu(recipientId, conflictLists) {
             quick_replies: conflictLists.map(function (option) {
                 return {
                     "content_type":"text",
-                    "title":option,
+                    "title":option.substr(0, 20),
                     "payload":option
                 }
             })
