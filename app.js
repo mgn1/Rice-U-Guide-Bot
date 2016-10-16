@@ -310,6 +310,9 @@ function receivedMessage(event) {
                   setUserState(senderID, "menu");
                   sendFunFact(senderID);
                   break;
+              case "businesses":
+                  setUserState(senderID, "businesses");
+                  sendBusiness(senderID, "You are in Businesses/Serveries. Enter a business or service, or exit using the keyword \"exit\".")
               case "explore":
                   setUserState(senderID, "menu");
                   sendExplore(senderID);
@@ -332,6 +335,9 @@ function receivedMessage(event) {
       } else if (messageText === "explore") {
           setUserState(senderID, "menu");
           sendExplore(senderID);
+      } else if(messageText === "businesses") {
+          setUserState(senderID, "businesses");
+          sendTextMessage(senderID, "You are in Businesses/Serveries. Enter a business or service, or exit using the keyword \"exit\".");
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
@@ -343,6 +349,9 @@ function receivedMessage(event) {
               break;
           case "directions":
               sendDirections(senderID, messageText);
+              break;
+          case "businesses":
+              sendBusiness(senderID, messageText);
               break;
           case "fun facts":
               setUserState(senderID, "menu");
@@ -382,6 +391,11 @@ function sendMenu(recipientId) {
                     "content_type":"text",
                     "title":"Explore",
                     "payload":"explore"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Bussinesses/Serveries",
+                    "payload":"businesses"
                 },
                 {
                     "content_type":"text",
@@ -523,7 +537,7 @@ function sendDirections(recipientId, messageData) {
 ["South Plant", "(south plant)|(spl)", "https://goo.gl/maps/dYqLh2DdN7J2"], 
 ["Sid Richardson College", "(sid richardson college)|(src)|(sid)|(sid rich)", "https://goo.gl/maps/YP5bYXohTCP2"],
 ["Space Science and Tech Bldg", "(space science and tech bldg)|(sst)", "https://goo.gl/maps/SJWfraBFJV42"], 
-["South Servery", "(south servery)|(ssv)|(siebel)", "https://goo.gl/maps/BGGmY981uMx"],
+["South Servery", "(south servery)|(ssv)|(south)", "https://goo.gl/maps/BGGmY981uMx"],
 ["Rice Stadium", "(rice stadium)|(sta)", "https://goo.gl/maps/U2DX4dsA22n/"], 
 ["To Be Announced", "(to be announced)|(tba)", "SPECIAL CASE - EXPLAIN"], 
 ["Tudor Fieldhouse", "(tudor fieldhouse)|(tud)|(tudor)", "https://goo.gl/maps/JfsuZKArcHr"],
@@ -697,6 +711,25 @@ function sendExplore(recipientId) {
 }
 
 /*
+ * Businesses/Serveries
+ */
+function sendBusiness(recipientId, messageData) {
+    var businesses = [["Rice Coffeehouse is the student-run place to get your caffeine fix.", "(.coffee.)|(.cafe.)", "https://goo.gl/maps/zaHsCqqwe6p", "hours"],
+        ["The Hoot is Rice's late night food store", "(.late.)|(.hoot.)", "https://goo.gl/maps/zaHsCqqwe6p", "hoot hours"]];
+
+    var matches = [];
+    locs.forEach(function (location) {
+        var reg = new RegExp(location[1]);
+        if (reg.test(messageData) === true) {
+            matches.push([location[0], location[2]]);
+        }
+    });
+    var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
+    sendTextMessage(recipientId, lastLoc[0] + " Their business hours are " + lastLoc[2] + ".  You can find them here: " + lastLoc[1]);
+}
+
+
+/*
  * Send a text message using the Send API.
  *
  */
@@ -713,41 +746,6 @@ function sendTextMessage(recipientId, messageText) {
 
   callSendAPI(messageData);
 }
-
-/*
- * Send a message with Quick Reply buttons.
- *
- */
-function sendQuickReply(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: "What's your favorite movie genre?",
-      quick_replies: [
-        {
-          "content_type":"text",
-          "title":"Action",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
-        },
-        {
-          "content_type":"text",
-          "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-        },
-        {
-          "content_type":"text",
-          "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
-        }
-      ]
-    }
-  };
-
-  callSendAPI(messageData);
-}
-
 
 
 /*
