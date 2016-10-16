@@ -223,7 +223,7 @@ function receivedDeliveryConfirmation(event) {
 /*
  * Get the state of the given user
  */
-function getUserState(id) {
+function getUser(id) {
     return userState[id];
 }
 
@@ -266,10 +266,10 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-    if (getUserState(senderID) === undefined) {
+    if (getUser(senderID) === undefined) {
         makeUser(senderID);
 
-        console.log("undefined found. new state is " + getUserState(senderID).stateName);
+        console.log("undefined found. new state is " + getUser(senderID).stateName);
     }
 
   console.log("Received message for user %d and page %d at %d with message:", 
@@ -288,22 +288,22 @@ function receivedMessage(event) {
 
   if (quickReply) {
       var quickReplyPayload = quickReply.payload;
-      if (getUserState(senderID).clarify) {
+      if (getUser(senderID).clarify) {
           setUserDirectClarify(senderID, false);
           sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
-              " state: " + getUserState(senderID).stateName);
+              " state: " + getUser(senderID).stateName);
           setUserState(senderID, "menu");
       }
        else {
           setUserState(senderID, quickReplyPayload);
           sendTextMessage(senderID, quickReplyPayload + " selected as a quick reply. user: " + senderID +
-              " state: " + getUserState(senderID).stateName);
+              " state: " + getUser(senderID).stateName);
       }
     return;
   }
 
   else if (messageText) {
-      var state = getUserState(senderID).stateName;
+      var state = getUser(senderID).stateName;
       switch(state) {
           case "menu":
               sendMenu(senderID);
