@@ -398,7 +398,7 @@ function sendMenu(recipientId) {
                 },
                 {
                     "content_type":"text",
-                    "title":"Bussiness/Servery",
+                    "title":"Business/Servery",
                     "payload":"businesses"
                 },
                 {
