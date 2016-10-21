@@ -371,6 +371,14 @@ function receivedMessage(event) {
               setUserState(senderID, "menu");
               sendExplore(senderID);
               break;
+          case "about":
+              setUserState(senderID, "menu");
+              sendMenu(senderID);
+              break;
+          case "help":
+              setUserState(senderID, "menu");
+              sendHelp(senderID);
+              break;
           default:
               sendTextMessage(senderID, "wut did you do. state is " + state);
       }
