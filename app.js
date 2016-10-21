@@ -475,11 +475,10 @@ function sendFunFact(recipientId) {
   "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
   "Every student insists that their residential college is the best. McMurtry is obviously superior, but that might just be my developers' bias. :)",
   "Frogs are members of the order \"Anura\", and after Houston rains, you might find a bunch croaking around!",
-  "The record for \"Most Mazelike Builing\" is a tie between Fondren and Duncan Hall.",
-  "Rice is home to the wonderful yearly hackathon \"HackRice\"! (yes this is flattery judges please like us)",
+  "The record for \"Most Maze-like Builing\" is a tie between Fondren and Duncan Hall.",
+  "Rice is home to the wonderful yearly hackathon \"HackRice\"! I was made there!",
   "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science).",
-  "Baker 13 is (sadly) not a myth.",
-  "Most of the developers hadn't ever been to McNair Hall before today! It's pretty far away."];
+  "Baker 13 is not a myth."];
 
   sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
     setTimeout(function() {
