@@ -321,10 +321,12 @@ function receivedMessage(event) {
               case "about":
                   setUserState(senderID, "menu");
                   sendAbout(senderID);
+                  sendMenu(senderID);
                   break;
               case "help":
                   setUserState(senderID, "menu");
                   sendHelp(senderID);
+                  sendMenu(senderID);
                   break;
               default:
                   sendTextMessage(senderID, "wut did you do. state is " + quickReplyPayload);
