@@ -196,6 +196,25 @@ function receivedAuthentication(event) {
 }
 
 /*
+ * Message Read Event
+ *
+ * This event is called when a previously-sent message has been read.
+ * https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
+ *
+ */
+function receivedMessageRead(event) {
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
+
+    // All messages before watermark (a timestamp) or sequence have been seen.
+    var watermark = event.read.watermark;
+    var sequenceNumber = event.read.seq;
+
+    console.log("Received message read event for watermark %d and sequence " +
+        "number %d", watermark, sequenceNumber);
+}
+
+/*
  * Delivery Confirmation Event
  *
  * This event is sent to confirm the delivery of a message. Read more about
@@ -447,25 +466,6 @@ function sendMenu(recipientId) {
 }
 
 
-/*
- * Message Read Event
- *
- * This event is called when a previously-sent message has been read.
- * https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
- * 
- */
-function receivedMessageRead(event) {
-  var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
-
-  // All messages before watermark (a timestamp) or sequence have been seen.
-  var watermark = event.read.watermark;
-  var sequenceNumber = event.read.seq;
-
-  console.log("Received message read event for watermark %d and sequence " +
-    "number %d", watermark, sequenceNumber);
-}
-
 
 /*
  * Sends a Rice fun fact
@@ -517,6 +517,8 @@ function sendDirections(recipientId, messageData) {
         ]
     };
 
+
+    //add master's houses
     var locs = [
 ["conflict:Anderson", "anderson"],
 ["M.D. Anderson Biological Laboratories", "(m d anderson biological lab)|(abl)|((m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*)", "https://goo.gl/maps/GUr5RffcSju"],
@@ -811,6 +813,27 @@ function sendAbout(recipientId) {
 function sendHelp(recipientId) {
 
     sendTextMessage(recipientId, "Try asking for directions \"Where's the library?\", or about a campus business \"coffee\". You can use the Explore and Fun Facts functions to find new places to explore, or learn about Rice.");
+}
+
+/*
+ * Dumbledore! Ronnn Weasley! Harry Potter, Harry Potter, OOH!
+ */
+function sendEasterEgg(recipientID) {
+    var imageMessage = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "image",
+                payload: {
+                    url: "http://i.imgur.com/3a9el.gif"
+                }
+            }
+        }
+    };
+
+    callSendAPI(imageMessage);
 }
 
 /*
