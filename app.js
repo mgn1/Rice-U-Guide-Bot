@@ -374,7 +374,7 @@ function receivedMessage(event) {
       } else if (messageText === "upupdowndownleftrightleftrightbastart" || messageText === "konami" || messageText === "konami code") {
           setUserState(senderID, "menu");
           //sendTextMessage(senderID, "Hacking into the mainframe...... Success!");
-          sendEasterEgg(recipientID);
+          sendEasterEgg(senderID);
       } else if (messageText === "about" || messageText === "more") {
           setUserState(senderID, "menu");
           sendAbout(senderID);
