@@ -342,9 +342,15 @@ function receivedMessage(event) {
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
-      } else if (messageText === "upupdowndownleftrightleftrightbastart") {
+      } else if (messageText === "upupdowndownleftrightleftrightbastart" || messageText === "konami" || messageText === "konami code") {
           setUserState(senderID, "menu");
           sendTextMessage(senderID, "Hacking into the mainframe...... Success!");
+      } else if (messageText === "about" || messageText === "more") {
+          sendAbout(senderID);
+          setUserState(senderID, "menu");
+      } else if (messageText === "help") {
+          sendHelp(senderID);
+          setUserState(senderID, "menu");
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
@@ -405,6 +411,16 @@ function sendMenu(recipientId) {
                     "content_type":"text",
                     "title":"Fun Facts",
                     "payload":"fun facts"
+                },
+                {
+                    "content_type":"text",
+                    "title":"About",
+                    "payload":"about"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Help",
+                    "payload":"help"
                 }
             ]
         }
@@ -752,9 +768,23 @@ function sendBusiness(recipientId, messageData) {
     setTimeout(function() {
         sendTextMessage(recipientId, "You can find them here: " + lastLoc[1]);
     }, 1500);
-
 }
 
+/*
+ * Sends "about" page
+ */
+function sendAbout(recipientId) {
+
+    sendTextMessage(recipientId, "I was made at HackRice 2016, Rice's hackathon. I'm unofficial and not affiliated with Rice's administration.")
+}
+
+/*
+ * Sends "help" page
+ */
+function sendHelp(recipientId) {
+
+    sendTextMessage(recipientId, "Try asking for directions \"Where's the library?\"', or about a campus business \"coffee\". You can use the Explore and Fun Facts functions to find new places to explore, or learn about Rice.");
+}
 
 /*
  * Send a text message using the Send API.
