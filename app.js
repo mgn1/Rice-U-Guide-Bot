@@ -810,7 +810,7 @@ function sendAbout(recipientId) {
  */
 function sendHelp(recipientId) {
 
-    sendTextMessage(recipientId, "Try asking for directions \"Where's the library?\"', or about a campus business \"coffee\". You can use the Explore and Fun Facts functions to find new places to explore, or learn about Rice.");
+    sendTextMessage(recipientId, "Try asking for directions \"Where's the library?\", or about a campus business \"coffee\". You can use the Explore and Fun Facts functions to find new places to explore, or learn about Rice.");
 }
 
 /*
@@ -853,7 +853,7 @@ function callSendAPI(messageData) {
         console.log("Successfully sent message with id %s to recipient %s", 
           messageId, recipientId);
       } else {
-      console.log("Successfully called Send API for recipient %s", 
+        console.log("Successfully called Send API for recipient %s",
         recipientId);
       }
     } else {
