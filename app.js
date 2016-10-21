@@ -478,7 +478,8 @@ function sendFunFact(recipientId) {
   "The record for \"Most Maze-like Builing\" is a tie between Fondren and Duncan Hall.",
   "Rice is home to the wonderful yearly hackathon \"HackRice\"! I was made there!",
   "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science).",
-  "Baker 13 is not a myth."];
+  "Baker 13 is not a myth.",
+  "A Rice saying goes, \"There's a tree for every student, and two squirrels for every tree!\" (Careful though, the squirrels bite.)"];
 
   sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
     setTimeout(function() {
