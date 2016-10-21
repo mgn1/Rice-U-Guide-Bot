@@ -346,11 +346,11 @@ function receivedMessage(event) {
           setUserState(senderID, "menu");
           sendTextMessage(senderID, "Hacking into the mainframe...... Success!");
       } else if (messageText === "about" || messageText === "more") {
+          setUserState(senderID, "menu");
           sendAbout(senderID);
-          setUserState(senderID, "menu");
       } else if (messageText === "help") {
-          sendHelp(senderID);
           setUserState(senderID, "menu");
+          sendHelp(senderID);
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
