@@ -400,7 +400,6 @@ function receivedMessage(event) {
 
 /*
  * Send our main menu
- *
  */
 function sendMenu(recipientId) {
     var messageData = {
@@ -768,7 +767,7 @@ function sendBusiness(recipientId, messageData) {
         ["North Servery is one of Rice's serveries, serving Jones, Brown, and Martel colleges.", ".*north.*", "https://goo.gl/maps/5agW4LkomU22", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
         ["West Servery is one of Rice's serveries, serving McMurtry and Duncan colleges.", ".*west.*", "https://goo.gl/maps/sYYuo199NoE2", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
         ["South Servery is one of Rice's serveries, serving Weiss and Hanszen colleges.", ".*south.*", "https://goo.gl/maps/BGGmY981uMx", "open for breakfast 7:30-10:30 every weekday, open for lunch 11:30-1:30 every weekday (11:30-2:00 on Sunday), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
-        ["East Servery doesn't exist. Try North, South, or West?", ".*east.*", "Not here", "Never"],
+        ["East-West boba tea is sold at West Servery.", ".*east.*", "https://goo.gl/maps/sYYuo199NoE2", "Tuesdays and Thursdays nights 8:30-10:30 pm"],
         ["Baker Servery is one of Rice's serveries, serving Baker college.", ".*baker.*", "https://goo.gl/maps/W5NJNnAFW2q", "weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Baker Kitchen is closed on weekends"],
         ["Seibel Servery is one of Rice's serveries, serving Lovett and Will Rice colleges.", "(.*seibel.*)|(.*siebel.*)", "https://goo.gl/maps/VXZo1RxHMHJ2", "open for breakfast 7:30-10:30 every weekday (9:00-11:00 on Saturday), open for lunch 11:30-1:30 every weekday (11:30-2:00 on weekends), and open for dinner 5:30-7:30 Monday through Thursday, 5:30-7:00 on Friday, and 5:00 - 7:00 on Sunday"],
         ["Sid Rich Servery is one of Rice's serveries, serving Sid Richardson college.", ".*sid.*", "https://goo.gl/maps/YP5bYXohTCP2", "open on weekdays from 7:30-10:30, 11:30-1:30, and 5:30-7:30 (no dinner on Fridays). Sid Kitchen is closed on weekends"]];
