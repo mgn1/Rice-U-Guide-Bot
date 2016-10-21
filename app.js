@@ -819,10 +819,10 @@ function sendHelp(recipientId) {
 /*
  * Dumbledore! Ronnn Weasley! Harry Potter, Harry Potter, OOH!
  */
-function sendEasterEgg(recipientID) {
+function sendEasterEgg(senderID) {
     var imageMessage = {
         recipient: {
-            id: recipientId
+            id: senderID
         },
         message: {
             attachment: {
