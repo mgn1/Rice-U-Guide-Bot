@@ -251,7 +251,9 @@ function getUser(id) {
 function makeUser(id) {
     userState[id] = {
         stateName:"menu",
-        clarify:"false"
+        clarify:"false",
+        funFact:[],
+        explore:[]
     };
 }
 
