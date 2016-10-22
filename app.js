@@ -216,6 +216,16 @@ function receivedMessageRead(event) {
         "number %d", watermark, sequenceNumber);
 }
 
+function contains(a, obj) {
+    var i = a.length;
+    while (i--) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
 /*
  * Delivery Confirmation Event
  *
@@ -488,7 +498,7 @@ function sendFunFact(recipientId) {
 
     var rand = Math.floor(Math.random() * facts.length);
 
-    while (userState[recipientId].funFact.contains(rand)) {
+    while (contains(userState[recipientId].funFact, rand)) {
         rand = Math.floor(Math.random() * facts.length);
     }
 
