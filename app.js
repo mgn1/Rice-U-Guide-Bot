@@ -373,7 +373,6 @@ function receivedMessage(event) {
           sendFunFact(senderID);
       } else if (messageText === "upupdowndownleftrightleftrightbastart" || messageText === "konami" || messageText === "konami code" || messageText === "up up down down left right left right b a start") {
           setUserState(senderID, "menu");
-          //sendTextMessage(senderID, "Hacking into the mainframe...... Success!");
           sendEasterEgg(senderID);
       } else if (messageText === "about" || messageText === "more") {
           setUserState(senderID, "menu");
@@ -411,8 +410,8 @@ function receivedMessage(event) {
               break;
           default:
               sendTextMessage(senderID, "wut did you do. state is " + state);
-      }
         }
+      }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "I can't understand attachments :/");
   }
@@ -603,8 +602,6 @@ function sendDirections(recipientId, messageData) {
 
       /*
     var locs = [
-        ["Abercrombie Engineering Laboratory", "abercrombie\\s(engineering\\slaboratory)*"],
-        ["Allen Business Center", "allen\\s(business\\s)*center"],
         ["conflict:Anderson", "anderson"],
         ["M.D. Anderson Biological Laboratories", "(m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*"],
         ["Anderson-Clarke Center", "anderson((-|\\s)+clarke)*\\scenter"],
@@ -711,7 +708,6 @@ function sendConflictMenu(recipientId, conflictLists) {
                     "payload":option[0] + " is located at " + option[1]
                 };
             })
-
         }
     };
 
@@ -722,22 +718,29 @@ function sendConflictMenu(recipientId, conflictLists) {
  * Sends the user to a location to explore
  */
 function sendExplore(recipientId) {
-    var locations = ["The Frog Wall is a wall that sounds just like a frog chirping if you lick your thumb and run it down the wall.",
-        "Rice has a piece of the historic Berlin wall on campus that divided Germany from 1961 to 1989.",
-        "Duncan Hall, Rice's Computational Engineering Building, has an incredible ceiling inspired by many world cultures.",
-        "Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it."];
 
-    var images = ["http://content-img.newsinc.com/jpg/374/29570937/24703533.jpg?t=1439989620",
-        "http://mw2.google.com/mw-panoramio/photos/medium/66655372.jpg",
-        "http://timeline.centennial.rice.edu/site_media/uploads/images/2011-03-24/Duncan_Hall_interior_copy_tif_800x700_q85.jpg",
-        "http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png"];
+    var explore = [
+        ["The Frog Wall is a wall that sounds just like a frog chirping if you lick your thumb and run it down the wall.","http://content-img.newsinc.com/jpg/374/29570937/24703533.jpg?t=1439989620","https://goo.gl/maps/SpC9zE29evM2"],
+        ["Rice has a piece of the historic Berlin wall on campus that divided Germany from 1961 to 1989.","http://mw2.google.com/mw-panoramio/photos/medium/66655372.jpg","https://goo.gl/maps/3pzPxMp9yYC2"],
+        ["Duncan Hall, Rice's Computational Engineering Building, has an incredible ceiling inspired by many world cultures.","http://timeline.centennial.rice.edu/site_media/uploads/images/2011-03-24/Duncan_Hall_interior_copy_tif_800x700_q85.jpg","https://goo.gl/maps/M1VsyKEDrwq"],
+        ["Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it.","http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png","https://goo.gl/maps/hrhCZW94hWt"]
+    ];
+    // var locations = ["The Frog Wall is a wall that sounds just like a frog chirping if you lick your thumb and run it down the wall.",
+    //     "Rice has a piece of the historic Berlin wall on campus that divided Germany from 1961 to 1989.",
+    //     "Duncan Hall, Rice's Computational Engineering Building, has an incredible ceiling inspired by many world cultures.",
+    //     "Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it."];
+    //
+    // var images = ["http://content-img.newsinc.com/jpg/374/29570937/24703533.jpg?t=1439989620",
+    //     "http://mw2.google.com/mw-panoramio/photos/medium/66655372.jpg",
+    //     "http://timeline.centennial.rice.edu/site_media/uploads/images/2011-03-24/Duncan_Hall_interior_copy_tif_800x700_q85.jpg",
+    //     "http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png"];
+    //
+    // var links = ["https://goo.gl/maps/SpC9zE29evM2",
+    //     "https://goo.gl/maps/3pzPxMp9yYC2",
+    //     "https://goo.gl/maps/M1VsyKEDrwq",
+    //     "https://goo.gl/maps/hrhCZW94hWt"];
 
-    var links = ["https://goo.gl/maps/SpC9zE29evM2",
-        "https://goo.gl/maps/3pzPxMp9yYC2",
-        "https://goo.gl/maps/M1VsyKEDrwq",
-        "https://goo.gl/maps/hrhCZW94hWt"];
-
-    var rand = Math.floor(Math.random() * locations.length);
+    var rand = Math.floor(Math.random() * explore.length);
 
     var imageMessage = {
         recipient: {
@@ -747,14 +750,14 @@ function sendExplore(recipientId) {
             attachment: {
                 type: "image",
                 payload: {
-                    url: images[rand]
+                    url: explore[rand][1]
                 }
             }
         }
     };
 
     callSendAPI(imageMessage);
-    sendTextMessage(recipientId, locations[rand] + " Here's a Google Maps link: " + links[rand]);
+    sendTextMessage(recipientId, explore[rand][0] + " Here's a Google Maps link: " + explore[rand][2]);
     setTimeout(function() {
         sendMenu(recipientId);
     }, 2000);
