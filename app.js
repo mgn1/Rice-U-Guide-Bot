@@ -17,7 +17,9 @@ app.use(express.static('public'));
 
 var userState = {"john": {
     stateName:"menu",
-    clarify:"false"
+    clarify:"false",
+    funFact:[],
+    explore:[]
 }};
 
 //var userList = { users: [{id:"john", state:"Directions"}, {id:"jane", state:"Directions"}]};
@@ -471,17 +473,26 @@ function sendMenu(recipientId) {
  * Sends a Rice fun fact
  */
 function sendFunFact(recipientId) {
+
   var facts = ["\"Strigiformes\" is the taxonomical order of all owls!", 
   "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
   "Every student insists that their residential college is the best. McMurtry is obviously superior, but that might just be my developers' bias. :)",
   "Frogs are members of the order \"Anura\", and after Houston rains, you might find a bunch croaking around!",
-  "The record for \"Most Maze-like Builing\" is a tie between Fondren and Duncan Hall.",
+  "The record for \"Most Maze-like Building\" is a tie between Fondren and Duncan Hall.",
   "Rice is home to the wonderful yearly hackathon \"HackRice\"! I was made there!",
   "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science).",
   "Baker 13 is not a myth.",
   "A Rice saying goes, \"There's a tree for every student, and two squirrels for every tree!\" (Careful though, the squirrels bite.)"];
 
-  sendTextMessage(recipientId, facts[Math.floor(Math.random() * facts.length)]);
+    var rand = Math.floor(Math.random() * facts.length);
+
+    while (userState[recipientId].funFact.contains(rand)) {
+        rand = Math.floor(Math.random() * facts.length);
+    }
+
+  sendTextMessage(recipientId, facts[rand]);
+    userState[recipientId].funFact.push[rand];
+
     setTimeout(function() {
         sendMenu(recipientId);
     }, 2000);
@@ -519,6 +530,10 @@ function sendDirections(recipientId, messageData) {
 
 
     //add master's houses
+    /*
+     Regex expressions for all the various places on campus.
+     See http://www.rice.edu/maps/Rice-University-Color-Campus-Map.pdf for a list of the major spots on campus.
+     */
     var locs = [
 ["conflict:Anderson", "anderson"],
 ["M.D. Anderson Biological Laboratories", "(m d anderson biological lab)|(abl)|((m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*)", "https://goo.gl/maps/GUr5RffcSju"],
@@ -595,62 +610,8 @@ function sendDirections(recipientId, messageData) {
 ["Harry C Weiss College", "(harry c weiss college)|(wsc)|(wiess)|(weiss)", "https://goo.gl/maps/97Rx2gFEEbP2"],
 ["West Servery", "(west servery)|(wsv)|(west)", "https://goo.gl/maps/6kUsgQyi3h12"]];
 
-    /*
-     Regex expressions for all the various places on campus.
-      See http://www.rice.edu/maps/Rice-University-Color-Campus-Map.pdf for a list of the major spots on campus.
-      */
 
-      /*
-    var locs = [
-        ["conflict:Anderson", "anderson"],
-        ["M.D. Anderson Biological Laboratories", "(m\\.*d\\.*\\s)*anderson\\s(biological\\s)*lab((oratories)|(oratory))*"],
-        ["Anderson-Clarke Center", "anderson((-|\\s)+clarke)*\\scenter"],
-        ["M.D. Anderson Hall", "(m\\.*d\\.*\\s)*anderson\\shall"],
-        ["Baker College", "baker(\\scollege)*"],
-        ["Baker College Masters House", "baker(\\scollege)*(\\smaster)+.*(house)*"],
-        ["James A. Baker Hall", "(james\\s(a\\.*\\s)*)*baker\\shall"],
-        ["BioScience Research Collaborative", "bioscience(\\sresearch)*(\\scollaborative)*"],
-        ["conflict: Pavilion", "pavilion"],
-        ["Booth Centennial Pavilion", "(booth\\s)*centennial\\spavilion"],
-        ["Brochstein Pavilion", "brochstein(\\spavilion)*"],
-        ["Brockman Hall for Physics", "brockman(\\shall)*(\\sfor\\sphysics)*"],
-        ["Brown College", "brown(\\scollege)*"],
-        ["Brown College Masters House", "brown(\\scollege)*(\\smaster)+.*(house)*"],
-        ["conflict:Brown Hall", "brown\\shall"],
-        ["Alice Pratt Brown Hall", "(((alice\\s)*(pratt\\s)+)|((alice\\s)+(pratt\\s)*))brown\\shall"],
-        ["George R. Brown Hall", "(((george\\s)*(r\\.*\\s)+)|((george\\s)+(r\\.*\\s)*))brown\\shall"],
-        ["Herman Brown Hall", "herman\\sbrown\\shall"],
-        ["Dell Butcher Hall", "((dell\\s)+(butcher\\s)*)|((dell\\s)*(butcher\\s)+)hall"],
-        ["Cohen House", "cohen(\\shouse)*"],
-        ["John L. Cox Fitness Center", "(john\\s)*(l(\\.)*\\s)*(cox\\s)*fitness\\scenter"],
-        ["conflict:Duncan", "duncan"],
-        ["Duncan College", "duncan\\scollege"],
-        ["Duncan College Masters House", "duncan\\s(college\\s)*master.*house"],
-        ["Duncan Hall", "duncan\\shall"],
-        ["Facilities Engineering and Planning Building", "facilities\\s(engineering and planning\\s)*building"],
-        ["Fondren Library", "((fondren\\s)*(library)+)|((fondren)+\\s*(library)*)"],
-        ["George R. Brown School of Engineering", "(george\\s(r\\.*\\s)*brown)+|(school\\sof\\sengineering)+"],
-        ["Gibbs Recreation and Wellness Center", "((gibbs\\s)*rec(reation)*\\s(and\\swellness\\s)*center)|(gym)"],
-        ["Susanne M. Glasscock School of Continuing Studies", "(susanne\\sm\\.*\\s)*(glasscock\\s)*school\\sof\\scontinuing\\sstudies"],
-        ["Greenbriar Building", "greenbriar(\\sbuilding)*"],
-        ["Greenhouse", "greenhouse"],
-        ["Hamman Hall", "hamman\\shall"],
-        ["Hanszen College", "hanszen(\\scollege)*"],
-        ["Hanszen College Masters House", "hanszen(\\scollege)*(\\smaster)+.*(house)*"],
-        ["Robert R. Herring Hall", "(robert\\sr\.*\\s)*herring\\shall"],
-        ["Herzstein Hall", "herzstein\\shall"],
-        ["Holloway Field", "holloway(\\sfield)*"],
-        ["Housing and Dining", "housing\\sand\\sdining"],
-        ["Huff House", "huff\\shouse"],
-        ["Humanities Building", "humanities\\sbuilding"],
-        ["School of Humanities", "school\\sof\\shumanities"],
-        ["conflict:Jones", "jones"],
-        ["Jesse Jones Graduate School of Business", "(jesse\\s)*jones\\s(graduate\\s)*school(\\sof)*(\\sbusiness)+"],
-        ["Jones College", "jones\\scollege"],
-        ["Jones College Masters House", "jones(\\scollege)*(\\smaster)+.*(house)*"],
-        ["Keck Hall", "kec\\shall"],
-        ["Keith-Wiess Geological Laboratories", "keith-*\\s*wiess\\s*(geological\\slaborator(ies)|y)*"]
-    ];*/
+
 
     // Search for regexes
     var matches = [];
@@ -725,20 +686,6 @@ function sendExplore(recipientId) {
         ["Duncan Hall, Rice's Computational Engineering Building, has an incredible ceiling inspired by many world cultures.","http://timeline.centennial.rice.edu/site_media/uploads/images/2011-03-24/Duncan_Hall_interior_copy_tif_800x700_q85.jpg","https://goo.gl/maps/M1VsyKEDrwq"],
         ["Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it.","http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png","https://goo.gl/maps/hrhCZW94hWt"]
     ];
-    // var locations = ["The Frog Wall is a wall that sounds just like a frog chirping if you lick your thumb and run it down the wall.",
-    //     "Rice has a piece of the historic Berlin wall on campus that divided Germany from 1961 to 1989.",
-    //     "Duncan Hall, Rice's Computational Engineering Building, has an incredible ceiling inspired by many world cultures.",
-    //     "Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it."];
-    //
-    // var images = ["http://content-img.newsinc.com/jpg/374/29570937/24703533.jpg?t=1439989620",
-    //     "http://mw2.google.com/mw-panoramio/photos/medium/66655372.jpg",
-    //     "http://timeline.centennial.rice.edu/site_media/uploads/images/2011-03-24/Duncan_Hall_interior_copy_tif_800x700_q85.jpg",
-    //     "http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png"];
-    //
-    // var links = ["https://goo.gl/maps/SpC9zE29evM2",
-    //     "https://goo.gl/maps/3pzPxMp9yYC2",
-    //     "https://goo.gl/maps/M1VsyKEDrwq",
-    //     "https://goo.gl/maps/hrhCZW94hWt"];
 
     var rand = Math.floor(Math.random() * explore.length);
 
@@ -788,10 +735,6 @@ function sendBusiness(recipientId, messageData) {
     var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
     if (lastLoc[0].length < 2) {
         sendTextMessage(recipientId, "I don't recognize that business, servery, or service. Please try again.");
-        return;
-    }
-    if (lastLoc[0] === "East Servery doesn't exist. Try North, South, or West?") {
-        sendTextMessage(recipientId, lastLoc[0]);
         return;
     }
     sendTextMessage(recipientId, lastLoc[0]);
