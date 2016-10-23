@@ -299,12 +299,12 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-    //if (getUser(senderID) === undefined) {
+    if (getUser(senderID) === undefined) {
         makeUser(senderID);
 
         console.log("undefined found. new state is " + getUser(senderID).stateName +
             " with clarification " + getUser(senderID).clarify);
-    //}
+    }
 
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
