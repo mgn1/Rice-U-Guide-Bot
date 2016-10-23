@@ -262,7 +262,7 @@ function makeUser(id) {
     userState[id] = {
         stateName:"menu",
         clarify:"false",
-        funFact:[],
+        funFact:[-1],
         explore:[]
     };
 }
@@ -507,7 +507,7 @@ function sendFunFact(recipientId) {
     sendTextMessage(recipientId, facts[rand]);
 
     console.log(userState[recipientId].funFact);
-    userState[recipientId].funFact = userState[recipientId].funFact.push[rand];
+    userState[recipientId].funFact = arr.push[rand];
     console.log(userState[recipientId].funFact);
 
 
