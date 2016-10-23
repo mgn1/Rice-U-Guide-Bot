@@ -507,7 +507,7 @@ function sendFunFact(recipientId) {
     sendTextMessage(recipientId, facts[rand]);
 
     console.log(userState[recipientId].funFact);
-    userState[recipientId].funFact = arr.push[rand];
+    userState[recipientId].funFact = arr.push(rand);
     console.log(userState[recipientId].funFact);
 
 
