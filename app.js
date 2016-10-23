@@ -262,7 +262,7 @@ function makeUser(id) {
     userState[id] = {
         stateName:"menu",
         clarify:"false",
-        funFact:[-1],
+        funFact:[],
         explore:[]
     };
 }
@@ -499,6 +499,10 @@ function sendFunFact(recipientId) {
     console.log("rand: " + rand);
 
     var arr = userState[recipientId].funFact;
+    if (arr.length >= facts.length) {
+        userState[recipientId].funFact = [];
+        arr = [];
+    }
 
     while (contains(arr, rand)) {
         rand = Math.floor(Math.random() * facts.length);
