@@ -497,14 +497,18 @@ function sendFunFact(recipientId) {
     var rand = Math.floor(Math.random() * facts.length);
 
     console.log("rand: " + rand);
-    console.log(userState[recipientId].funFact.size);
+
 
     while (contains(userState[recipientId].funFact, rand)) {
         rand = Math.floor(Math.random() * facts.length);
     }
 
     sendTextMessage(recipientId, facts[rand]);
+
+    console.log(userState[recipientId].funFact);
     userState[recipientId].funFact.push[rand];
+    console.log(userState[recipientId].funFact);
+
 
     setTimeout(function() {
         sendMenu(recipientId);
