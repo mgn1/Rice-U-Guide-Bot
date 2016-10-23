@@ -479,22 +479,20 @@ function sendMenu(recipientId) {
     callSendAPI(messageData);
 }
 
-
-
 /*
  * Sends a Rice fun fact
  */
 function sendFunFact(recipientId) {
 
-  var facts = ["\"Strigiformes\" is the taxonomical order of all owls!", 
-  "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.", 
-  "Every student insists that their residential college is the best. McMurtry is obviously superior, but that might just be my developers' bias. :)",
-  "Frogs are members of the order \"Anura\", and after Houston rains, you might find a bunch croaking around!",
-  "The record for \"Most Maze-like Building\" is a tie between Fondren and Duncan Hall.",
-  "Rice is home to the wonderful yearly hackathon \"HackRice\"! I was made there!",
-  "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science).",
-  "Baker 13 is not a myth.",
-  "A Rice saying goes, \"There's a tree for every student, and two squirrels for every tree!\" (Careful though, the squirrels bite.)"];
+    var facts = ["\"Strigiformes\" is the taxonomical order of all owls!",
+        "It has been hypothesized that should Coffeehouse ever stop providing caffeine, the average undergraduate term paper would be three times as hard.",
+        "Every student insists that their residential college is the best. McMurtry is obviously superior, but that might just be my developers' bias. :)",
+        "Frogs are members of the order \"Anura\", and after Houston rains, you might find a bunch croaking around!",
+        "The record for \"Most Maze-like Building\" is a tie between Fondren and Duncan Hall.",
+        "Rice is home to the wonderful yearly hackathon \"HackRice\"! I was made there!",
+        "Every undergrad agrees that there's one distribution that's hardest; nobody can agree which (humanities, social sciences, or math and science).",
+        "Baker 13 is not a myth.",
+        "A Rice saying goes, \"There's a tree for every student, and two squirrels for every tree!\" (Careful though, the squirrels bite.)"];
 
     var rand = Math.floor(Math.random() * facts.length);
 
@@ -505,14 +503,12 @@ function sendFunFact(recipientId) {
         rand = Math.floor(Math.random() * facts.length);
     }
 
-  sendTextMessage(recipientId, facts[rand]);
+    sendTextMessage(recipientId, facts[rand]);
     userState[recipientId].funFact.push[rand];
 
     setTimeout(function() {
         sendMenu(recipientId);
     }, 2000);
-
-
 }
 
 /*
