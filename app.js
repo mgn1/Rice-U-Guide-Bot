@@ -497,7 +497,7 @@ function sendFunFact(recipientId) {
     var rand = Math.floor(Math.random() * facts.length);
 
     console.log("rand: " + rand);
-    console.log(userState[recipientId].funFact.toString());
+    console.log(userState[recipientId].funFact.size);
 
     while (contains(userState[recipientId].funFact, rand)) {
         rand = Math.floor(Math.random() * facts.length);
