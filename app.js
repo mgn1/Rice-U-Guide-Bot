@@ -718,11 +718,15 @@ function sendExplore(recipientId) {
         arr = [];
     }
 
+    console.log("1st rand: " + rand);
     while (contains(arr, rand)) {
         rand = Math.floor(Math.random() * explore.length);
     }
+    console.log("final rand: " + rand);
 
+    console.log(userState[recipientId].explore);
     userState[recipientId].funFact.push(rand);
+    console.log(userState[recipientId].explore);
 
     var imageMessage = {
         recipient: {
