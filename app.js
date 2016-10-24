@@ -496,7 +496,7 @@ function sendFunFact(recipientId) {
 
     var rand = Math.floor(Math.random() * facts.length);
 
-    console.log("rand: " + rand);
+    //console.log("rand: " + rand);
 
     var arr = userState[recipientId].funFact;
     if (arr.length >= facts.length) {
@@ -510,9 +510,9 @@ function sendFunFact(recipientId) {
 
     sendTextMessage(recipientId, facts[rand]);
 
-    console.log(userState[recipientId].funFact);
+    //console.log(userState[recipientId].funFact);
     userState[recipientId].funFact.push(rand);
-    console.log(userState[recipientId].funFact);
+    //console.log(userState[recipientId].funFact);
 
 
     setTimeout(function() {
@@ -709,7 +709,20 @@ function sendExplore(recipientId) {
         ["Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it.","http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png","https://goo.gl/maps/hrhCZW94hWt"]
     ];
 
+
     var rand = Math.floor(Math.random() * explore.length);
+
+    var arr = userState[recipientId].explore;
+    if (arr.length >= explore.length) {
+        userState[recipientId].explore = [];
+        arr = [];
+    }
+
+    while (contains(arr, rand)) {
+        rand = Math.floor(Math.random() * explore.length);
+    }
+
+    userState[recipientId].funFact.push(rand);
 
     var imageMessage = {
         recipient: {
