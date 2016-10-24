@@ -496,24 +496,22 @@ function sendFunFact(recipientId) {
 
     var rand = Math.floor(Math.random() * facts.length);
 
-    //console.log("rand: " + rand);
-
+    //if we need to refresh array (all have been given)
     var arr = userState[recipientId].funFact;
     if (arr.length >= facts.length) {
         userState[recipientId].funFact = [];
         arr = [];
     }
 
+    //while chosen fun fact has already been given
     while (contains(arr, rand)) {
         rand = Math.floor(Math.random() * facts.length);
     }
 
     sendTextMessage(recipientId, facts[rand]);
 
-    //console.log(userState[recipientId].funFact);
+    //mark that fun fact was given
     userState[recipientId].funFact.push(rand);
-    //console.log(userState[recipientId].funFact);
-
 
     setTimeout(function() {
         sendMenu(recipientId);
@@ -709,24 +707,22 @@ function sendExplore(recipientId) {
         ["Skyspace is an art installation by James Turrell. It lights up different colors at night, and performances are held within it.","http://skyspace.rice.edu/site_media/media/cache/fb/6b/fb6b16ad6fc3576b29168317daacf4e2.png","https://goo.gl/maps/hrhCZW94hWt"]
     ];
 
-
     var rand = Math.floor(Math.random() * explore.length);
 
+    //if we need to refresh array (all have been given to user)
     var arr = userState[recipientId].explore;
     if (arr.length >= explore.length) {
         userState[recipientId].explore = [];
         arr = [];
     }
 
-    console.log("1st rand: " + rand);
+    //while that explore has already been given
     while (contains(arr, rand)) {
         rand = Math.floor(Math.random() * explore.length);
     }
-    console.log("final rand: " + rand);
 
-    console.log(userState[recipientId].explore);
+    //mark that this explore was given
     userState[recipientId].explore.push(rand);
-    console.log(userState[recipientId].explore);
 
     var imageMessage = {
         recipient: {
