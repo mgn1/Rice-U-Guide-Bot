@@ -725,7 +725,7 @@ function sendExplore(recipientId) {
     console.log("final rand: " + rand);
 
     console.log(userState[recipientId].explore);
-    userState[recipientId].funFact.push(rand);
+    userState[recipientId].explore.push(rand);
     console.log(userState[recipientId].explore);
 
     var imageMessage = {
