@@ -310,14 +310,16 @@ function receivedMessage(event) {
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
 
-    /*
-  var isEcho = message.is_echo;
-  var messageId = message.mid;
-  var appId = message.app_id;
-  var metadata = message.metadata;
-  */
+    // var fs = require('fs');
+    // fs.writeFile("feedback.xt", "Hey there!", function(err) {
+    //     if(err) {
+    //         return console.log(err);
+    //     }
+    //
+    //     console.log("The file was saved!");
+    // });
 
-  // You may get a text or attachment but not both
+    // You may get a text or attachment but not both
   var messageText = message.text;
   var messageAttachments = message.attachments;
   var quickReply = message.quick_reply;
@@ -379,7 +381,7 @@ function receivedMessage(event) {
       } else if (messageText === "explore") {
           setUserState(senderID, "menu");
           sendExplore(senderID);
-      } else if(messageText === "businesses") {
+      } else if(messageText === "businesses" || messageText == "business" || messageText == "servery" || messageText == "serveries") {
           setUserState(senderID, "businesses");
           sendTextMessage(senderID, "You're in Businesses/Serveries. Enter a business, servery, or service, or exit using the keyword \"exit\".");
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
@@ -416,7 +418,7 @@ function receivedMessage(event) {
               break;
           case "about":
               setUserState(senderID, "menu");
-              sendMenu(senderID);
+              sendAbout(senderID);
               break;
           case "help":
               setUserState(senderID, "menu");
@@ -786,7 +788,7 @@ function sendBusiness(recipientId, messageData) {
  */
 function sendAbout(recipientId) {
 
-    sendTextMessage(recipientId, "I was made at HackRice 2016, Rice's hackathon. I'm unofficial and not affiliated with Rice's administration.")
+    sendTextMessage(recipientId, "I was made at HackRice 2016, Rice's hackathon. I'm unofficial and not affiliated with Rice's administration.");
 }
 
 /*
@@ -795,6 +797,13 @@ function sendAbout(recipientId) {
 function sendHelp(recipientId) {
 
     sendTextMessage(recipientId, "Try asking for directions \"Where's the library?\", or about a campus business \"coffee\". You can use the Explore and Fun Facts functions to find new places to explore, or learn about Rice.");
+}
+
+/*
+ * Sends feedback prompt
+ */
+function sendFeedback(recipientId) {
+    sendTextMessage(recipientId, "If you encounter a bug or want to send us some feedback, just include \"feedback\" somewhere in that message to the bot, and we'll see it. Thanks! We appreciate it!");
 }
 
 /*
