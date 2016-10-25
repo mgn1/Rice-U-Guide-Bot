@@ -278,6 +278,34 @@ function setUserDirectClarify(id, newClarify) {
     userState[id].clarify = newClarify;
 }
 
+// /*
+//  * finds intent of user by scanning for keywords in incoming (non-quick reply) messages
+//  */
+// function findIntent(messageText) {
+//
+//     var keywords = [];
+//     keywords.forEach(function keywords) {
+//     //     var reg = new RegExp(location[1]);
+//     //     if (reg.test(messageData) === true) {
+//     //         matches.push([location[0], location[2], location[3]]);
+//     //     }
+//     // });
+//     // var lastLoc = matches.length === 0 ? "Location not found." : matches[matches.length-1];
+//     // if (lastLoc[0].length < 2) {
+//     //     sendTextMessage(recipientId, "I don't recognize that business, servery, or service. Please try again.");
+//     //     return;
+//     // }
+//     // sendTextMessage(recipientId, lastLoc[0]);
+//     // setTimeout(function() {
+//     //     sendTextMessage(recipientId, "Their business hours are: " + lastLoc[2] + ".");
+//     // }, 1500);
+//     // setTimeout(function() {
+//     //     sendTextMessage(recipientId, "You can find them here: " + lastLoc[1]);
+//     // }, 1500);
+//
+// }
+
+
 /*
  * Message Event
  *
@@ -363,10 +391,10 @@ function receivedMessage(event) {
                   sendHelp(senderID);
                   sendMenu(senderID);
                   break;
-              case "feedback":
-                  setUserState(senderID, "menu");
-                  sendFeedback(senderID);
-                  sendMenu(senderID);
+              // case "feedback":
+              //     setUserState(senderID, "menu");
+              //     sendFeedback(senderID);
+              //     sendMenu(senderID);
               default:
                   sendTextMessage(senderID, "wut did you do. state is " + quickReplyPayload);
           }
@@ -404,10 +432,10 @@ function receivedMessage(event) {
           setUserState(senderID, "menu");
           sendHelp(senderID);
           sendMenu(senderID);
-      } else if (messageText == "feedback" || messageText == "error" || messageText == "errors" || messagetext == "bug"){
-          setUserState(senderID, "menu");
-          sendFeedback(senderID);
-          sendMenu(senderID);
+      // } else if (messageText == "feedback" || messageText == "error" || messageText == "errors" || messagetext == "bug"){
+      //     setUserState(senderID, "menu");
+      //     sendFeedback(senderID);
+      //     sendMenu(senderID);
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
@@ -811,12 +839,12 @@ function sendHelp(recipientId) {
     sendTextMessage(recipientId, "Try asking for directions \"Where's the library?\", or about a campus business \"coffee\". You can use the Explore and Fun Facts functions to find new places to explore, or learn about Rice.");
 }
 
-/*
- * Sends feedback prompt
- */
-function sendFeedback(recipientId) {
-    sendTextMessage(recipientId, "If you encounter a bug or want to send us some feedback, just include \"feedback\" somewhere in that message to the bot, and we'll see it. Thanks! We appreciate it!");
-}
+// /*
+//  * Sends feedback prompt
+//  */
+// function sendFeedback(recipientId) {
+//     sendTextMessage(recipientId, "If you encounter a bug or want to send us some feedback, just include \"feedback\" somewhere in that message to the bot, and we'll see it. Thanks! We appreciate it!");
+// }
 
 /*
  * Dumbledore! Ronnn Weasley! Harry Potter, Harry Potter, OOH!
