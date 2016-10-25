@@ -363,6 +363,10 @@ function receivedMessage(event) {
                   sendHelp(senderID);
                   sendMenu(senderID);
                   break;
+              case "feedback":
+                  setUserState(senderID, "menu");
+                  sendFeedback(senderID);
+                  sendMenu(senderID);
               default:
                   sendTextMessage(senderID, "wut did you do. state is " + quickReplyPayload);
           }
@@ -387,15 +391,23 @@ function receivedMessage(event) {
       } else if (messageText === "fun fact" || messageText === "fun facts" || messageText === "fun" || messageText === "fact" || messageText === "facts") {
           setUserState(senderID, "menu");
           sendFunFact(senderID);
+          sendMenu(senderID);
       } else if (messageText === "upupdowndownleftrightleftrightbastart" || messageText === "konami" || messageText === "konami code" || messageText === "up up down down left right left right b a start") {
           setUserState(senderID, "menu");
           sendEasterEgg(senderID);
+          sendMenu(senderID);
       } else if (messageText === "about" || messageText === "more") {
           setUserState(senderID, "menu");
           sendAbout(senderID);
+          sendMenu(senderID);
       } else if (messageText === "help") {
           setUserState(senderID, "menu");
           sendHelp(senderID);
+          sendMenu(senderID);
+      } else if (messageText == "feedback" || messageText == "error" || messageText == "errors" || messagetext == "bug"){
+          setUserState(senderID, "menu");
+          sendFeedback(senderID);
+          sendMenu(senderID);
       } else {
           var state = getUser(senderID).stateName;
       switch (state) {
