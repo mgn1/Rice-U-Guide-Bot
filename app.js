@@ -627,7 +627,7 @@ function sendDirections(recipientId, messageData) {
 ["Hamman Hall", "(hamman hall)|(ham)|(hamman\\shall)", "https://goo.gl/maps/VqmcP2hFpDn"],
 ["Holloway Field and Ley Track", "(holloway field and ley track)|(hfd)|(holloway(\\sfield)*)", "https://goo.gl/maps/6fdEGhsb8PA2"],
 ["Harry C Hanszen College", "(harry c hanszen college)|(hnz)|(hanszen(\\scollege)*)", "https://goo.gl/maps/Ko15SBHpRfP2"],
-["Robert R Herring Hall", "(robert r herring hall)|(hrg)|((robert\\sr\.*\\s)*herring\\shall)", "https://goo.gl/maps/7vsFvrLtkco"],
+["Robert R Herring Hall", "(.*herring.*)|(hrg)|((robert\\sr\.*\\s)*herring\\shall)", "https://goo.gl/maps/7vsFvrLtkco"],
 ["Herzstein Hall", "(herzstein hall)|(hrz)", "https://goo.gl/maps/NgTG6Qoou722"], 
 ["Huff House", "(huff house)|(huf)", "https://goo.gl/maps/FM8Q9CVtkuy"], 
 ["Humanities Building", "(humanities building)|(hum)", "https://goo.gl/maps/XKesMenuPar"],
